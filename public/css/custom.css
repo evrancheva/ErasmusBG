@@ -1,0 +1,27 @@
+.margin{
+    margin-top:10px;
+}
+
+dl p{
+	    display: inline;
+}
+.fc-title{
+	        font-size: 20px;
+}
+.fc-content{
+	border:1px grey solid;
+}
+.deleteImage{
+	background: none;
+    border: none;
+    font-size: 29px;
+    position: absolute;
+    color: red;
+}
+.deletePdf{
+		background: none;
+    border: none;
+    font-size: 29px;
+    
+    color: red;
+}
