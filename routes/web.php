@@ -47,3 +47,4 @@ Route::post('posts/{id}/deletePdf', 'PostController@destroyPdf');
 //User part
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);
 Route::resource('admin','AdminController');
+#sun
