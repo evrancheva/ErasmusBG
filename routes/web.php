@@ -38,11 +38,14 @@ Route::get('/contact','PagesController@getContact');
 Route::post('/contact','PagesController@postContact');
 Route::get('/about','PagesController@getAbout');
 Route::resource('posts','PostController');
-Route::resource('аccount','UserController',['except'=>['create','store']]);
+//Route::resource('аccount','UserController',['except'=>['create','store']]);
+Route::resource('account','AccountController');
 
 Route::post('posts/{id}/deleteImage', 'PostController@destroyImage');
 Route::post('posts/{id}/deletePdf', 'PostController@destroyPdf');
 #Route::post('posts/deleteImage/{id}',['as'=>'posts.destroyImage','uses'=>'PostController@destroyImage']);
+Route::post('/account/change_password',['uses'=>'AccountController@changePassword','as'=>'changePassword']);
+Route::post('/account/add_logo',['uses'=>'AccountController@addLogo','as'=>'addLogo']);
 
 //User part
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);

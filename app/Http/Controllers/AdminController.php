@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id','desc')->paginate(10);
-        return view("posts.index")->withPosts($posts);
+        return view("account.index")->withPosts($posts);
     }
     
     /**

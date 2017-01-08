@@ -43,8 +43,9 @@
                 <ul class="nav navbar-nav pull-right">
 
                     <li class="dropdown dropdown-user">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="../assets/layouts/layout2/img/avatar3_small.jpg" />
+                        <a href="/account" >
+
+                            <img alt="" class="img-circle minilogo" src="{{asset("/images/")}}/{!! Auth::user()->logo !!}" />
                             <span class="username username-hide-on-mobile">{!! Auth::user()->name !!} </span>
 
                         </a>
@@ -100,7 +101,7 @@
                     </a>
                 </li>
                
-                <li class="nav-item start ">
+               <!-- <li class="nav-item start ">
                     <a  class="nav-link nav-toggle" href="{!! route('categories.index')!!}">
                         <i class="fa fa-bookmark" aria-hidden="true"></i>
                         <span class="title">Categories</span>
@@ -113,9 +114,9 @@
                         <span class="title">Tags</span>
                         <span class="arrow"></span>
                     </a>
-                </li>
-                 <li class="nav-item start ">
-                    <a href="javascript:;" class="nav-link nav-toggle" >
+                </li>-->
+                 <li class="{{Request::is('account') ? "active": ""}} nav-item start ">
+                    <a href="/account" class=" nav-link nav-toggle" >
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                         <span class="title">Настройки</span>
                         <span class="arrow"></span>

@@ -58,7 +58,7 @@
                                             @foreach($posts as $post)
                                                 <tr>
                                                     <th>{{$post->id}}</th>
-                                                     <th>{{$post->title}}</th>
+                                                    <th>{{$post->title}}</th>
                                                     <td>{{$post->location}}</td>
                                                     <td>{{date('M j, Y',strtotime($post->start_date))}} - {{date('M j, Y',strtotime($post->end_date))}}</td>
                                                     <td>
