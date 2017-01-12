@@ -84,6 +84,7 @@
                                                             <img class="logo" src="{{asset("/images/")}}/{!! $user->logo !!}" style="width:250px;height:250px;">
                                                         </div>
                                                         @endif
+                                                        
                                                         {!! Form::open(['route' => 'addLogo',null,'files'=>true]) !!}
                                                             @if(!empty($user->logo))
                                                         {!! Form::label('featured_image',"Replace logo :") !!}

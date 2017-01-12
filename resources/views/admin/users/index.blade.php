@@ -1,5 +1,5 @@
-@extends('layouts.user')
-@section('title', '| All Posts')
+@extends('layouts.admin')
+@section('title', '| All users')
 @section('content')
     <!-- BEGIN PAGE HEADER-->
     <!-- BEGIN THEME PANEL -->
@@ -7,16 +7,7 @@
     <h1 class="page-title"> Всички проекти</h1>
     <div class="page-bar">
         <ul class="page-breadcrumb">
-            <li>
-                <i class="icon-home"></i>
-                <a href="index.html">Начало</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <i class="icon-home"></i>
-                <a href="{!! route('posts.index') !!}">Всички проекти</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
+         
         </ul>
     </div>
     <!-- END PAGE HEADER-->
@@ -48,23 +39,28 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Title</th>
-                                                <th>Location</th>
-                                                <th>Dates</th>
-                                                <th></th>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                               
+
+                                                <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($posts as $post)
+                                            @foreach($users as $user)
                                                 <tr>
-                                                    <th>{{$post->id}}</th>
-                                                    <th>{{$post->title}}</th>
-                                                    <td>{{$post->location}}</td>
-                                                    <td>{{date('M j, Y',strtotime($post->start_date))}} - {{date('M j, Y',strtotime($post->end_date))}}</td>
-                                                    <td>
-                                                        <a href="{{route("admin.show",$post->id)}}" class="btn btn-circle btn-outline blue ">View</a>
-                                                        <a href="{{route("admin.edit",$post->id)}}" class="btn btn-circle btn-outline red ">Edit</a>
-                                                    </td>
+                                                    <td>{!!$user->id!!}</td>
+                                                    <td> @if(!empty($user->logo))
+                                                        <img src="{{asset("/images/")}}/{!!$user->logo!!}" class="minilogo img-circle">@else
+                                                        <h5>No image </h5> @endif</td>
+                                                    <td>{!!$user->name!!} </td>
+                                                    <td>{{$user->email}}</td>
+                                                    
+                                                    <td>@if(!empty($user->phone))
+                                                        {{$user->phone}} @else <h5>No phone </h5> @endif</td>
+                                                   <td></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -74,11 +70,12 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            {!!  $posts->render()!!}
+                            {!!  $users->render()!!}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @stop

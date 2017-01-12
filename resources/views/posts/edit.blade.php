@@ -3,7 +3,7 @@
 @section('title', '| Edit Blog Post')
 
 @section('stylesheets')
-    {!! Html::style('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css') !!}
+   
     {!! Html::style('css/select2.min.css') !!}
      <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')
+    <input class="id" type="hidden" value="{!!$post->id!!}">
 
     <div class="row">
         {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}

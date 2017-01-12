@@ -17,27 +17,37 @@ use App\PostImage;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Intervention\Image\Facades\Image;
+use App\User;
 class AdminController extends Controller
 {
       public function __construct()
     {
         $this->middleware('auth');
+
     }
-    public function getDashboard(){
-        $posts = Post::all();
-        return view('user.dashboard')->withPosts($posts);
-    }
+
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
  
-    public function index()
+    public function getWelcome()
     {
-      $posts = Post::orderBy('id','desc')->paginate(10);
-        return view("admin.index")->withPosts($posts);
+        /*$posts = Post::orderBy('id','desc')->paginate(10);*/
+        return view("admin.dashboard");
     }
+
+    public function getPosts(){
+        $posts = Post::orderBy('id','desc')->paginate(10);
+        return view("admin.posts.index")->withPosts($posts);
+    }
+    public function getUsers(){
+        $users = User::orderBy('id','desc')->paginate(10);
+        return view("admin.users.index")->withUsers($users);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

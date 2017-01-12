@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 @section('title' ,' | View Post')
 @section('content')
     <div class="row">

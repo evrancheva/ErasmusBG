@@ -22,8 +22,9 @@ class UserController extends Controller
       public function __construct(){
     	$this->middleware('auth');
     }
+
     public function getDashboard(){
-    	$posts = Post::where('user_id', '=', Auth::user()->id);
+    	$posts = Post::where('user_id', '=', Auth::user()->id)->get();
         return view('user.dashboard')->withPosts($posts);
     }
 

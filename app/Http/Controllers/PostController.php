@@ -259,8 +259,8 @@ class PostController extends Controller
       
         Storage::delete($image->name);
          $image->delete();
-        Session::flash('success','The image was successfully deleted!');
        
+       return 'success';
     }
      public function destroyPdf($id){
          $id = $_POST['id'];

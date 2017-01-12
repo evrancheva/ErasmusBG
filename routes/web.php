@@ -42,12 +42,15 @@ Route::resource('posts','PostController');
 //Route::resource('аccount','UserController',['except'=>['create','store']]);
 Route::resource('account','AccountController');
 
-Route::post('posts/{id}/deleteImage', 'PostController@destroyImage');
-Route::post('posts/{id}/deletePdf', 'PostController@destroyPdf');
+Route::post('posts/{id}/deleteImage/{image_id}', 'PostController@destroyImage');
+Route::post('posts/{id}/deletePdf/{pdf_id}', 'PostController@destroyPdf');
 #Route::post('posts/deleteImage/{id}',['as'=>'posts.destroyImage','uses'=>'PostController@destroyImage']);
 Route::post('/account/change_password',['uses'=>'AccountController@changePassword','as'=>'changePassword']);
 Route::post('/account/add_logo',['uses'=>'AccountController@addLogo','as'=>'addLogo']);
 
 //User part
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);
-Route::resource('admin','AdminController');
+//Admin
+Route::get('/admin',['as'=>'admin.dashboard','uses'=>'AdminController@getWelcome','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/posts',['as'=>'admin.posts','uses'=>'AdminController@getPosts','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/users',['as'=>'admin.users','uses'=>'AdminController@getUsers','middleware'=>'roles','roles'=>'Admin']);
