@@ -16,6 +16,8 @@
 </script>
 @endsection
 @section('content')
+
+ {!!  Auth::user()->role !!}
 <h1 class="page-title"> Начало</h1>
 <div class="portlet light portlet-fit  calendar">
     <div class="portlet-title">

@@ -46,7 +46,7 @@
                         <hr>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Html::linkRoute('posts.edit','Edit',array($post->id),array('class'=>'btn btn-circle btn-outline btn-block blue')) !!}
+                        {!! Html::linkRoute('admin.edit','Edit',array($post->id),array('class'=>'btn btn-circle btn-outline btn-block blue')) !!}
                     </div>
                     <div class="col-md-6">
                         {!! Form::open(['route'=>['posts.destroy',$post->id],'method' => 'DELETE']) !!}
@@ -54,7 +54,7 @@
                         {!! Form::close() !!}
                     </div>
                     <div class="col-md-12">
-                    <a href="{{route("posts.index")}}" class="btn btn-circle btn-outline btn-block dark margin" > << See all posts</a>
+                    <a href="{{route("admin.index")}}" class="btn btn-circle btn-outline btn-block dark margin" > << See all posts</a>
                     </div>
                    </div>
             </div>

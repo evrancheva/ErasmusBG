@@ -158,7 +158,7 @@ class AccountController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' .$filename);
-            Image::make($image)->resize(800,400)->save($location);
+            Image::make($image)->crop(400,400)->save($location);
 
             $user->logo = $filename;
             $user->save();

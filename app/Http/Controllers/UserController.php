@@ -23,7 +23,7 @@ class UserController extends Controller
     	$this->middleware('auth');
     }
     public function getDashboard(){
-    	$posts = Post::all();
+    	$posts = Post::where('user_id', '=', Auth::user()->id);
         return view('user.dashboard')->withPosts($posts);
     }
 

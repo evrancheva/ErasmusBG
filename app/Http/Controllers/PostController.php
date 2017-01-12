@@ -15,6 +15,7 @@ use Storage;
 use App\PostImage;
 use Illuminate\Support\Facades\Input;
 use Redirect;
+use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
     public function __construct()
@@ -117,9 +118,16 @@ class PostController extends Controller
     public function show($id)
     {
 
-        $post = Post::find($id);
-        $images = PostImage::where('post_id','=', $id)->get();
-        return view('posts.show')->withPost($post)->withImages($images);
+        $post = Post::where('id','=',$id)->where('user_id','=',Auth::user()->id)->get();
+        if(!$post->isEmpty()){
+           $post = Post::find($id);
+           $images = PostImage::where('post_id','=', $id)->get();
+            return view('posts.show')->withPost($post)->withImages($images);  
+        }
+        else{
+
+           return redirect()->back();
+        }
     }
 
     /**
@@ -142,8 +150,17 @@ class PostController extends Controller
         foreach($categories as $category){
             $cats[$category->id]=$category->name;
         }
-        $post = Post::find($id);
-        return view('posts.edit')->withTags($tagss)->withPost($post)->withCategories($cats)->withImages($images);;
+        $post = Post::where('id','=',$id)->where('user_id','=',Auth::user()->id)->get();
+        if(!$post->isEmpty()){
+           $post = Post::find($id);
+            return view('posts.edit')->withTags($tagss)->withPost($post)->withCategories($cats)->withImages($images);;
+        }
+        else{
+
+           return redirect()->back();
+        }
+      
+      
     }
 
     /**
@@ -187,9 +204,9 @@ class PostController extends Controller
             $files = Input::file('featured_images');  
             foreach($files as $file) {
 
-                $destinationPath = public_path('images/');
+                $destinationPath = public_path('images\\');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-                $upload_success = $file->move($destinationPath, $filename);
+                Image::make($file)->crop(500,500)->save($destinationPath . $filename);
                 $postImage = new PostImage;
                 $idOfImage = Post::where('title', $request->title)->first();
                 $postImage->post_id = $idOfImage->id;
@@ -237,9 +254,11 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
     public function destroyImage($id){
-         $id = $_POST['id'];
+        $id = $_POST['id'];
        $image = PostImage::find($id);
-       $image->delete();
+      
+        Storage::delete($image->name);
+         $image->delete();
         Session::flash('success','The image was successfully deleted!');
        
     }

@@ -1,5 +1,5 @@
 @extends('layouts.user')
-@section('title', '| All Posts')
+@section('title', '| Profile')
 @section('content')
     <div class="">
         <!-- BEGIN PAGE HEADER-->
@@ -56,7 +56,7 @@
                                                 <div class="tab-content">
                                                     <!-- PERSONAL INFO TAB -->
                                                     <div class="tab-pane active" id="tab_1_1">
-
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         {!! Form::model($user, ['route' => ['account.update', Auth::user()->id], 'method' => 'PUT', 'files' => true]) !!}
 
                                                         {!! Form::label('name', 'Name of the organization:') !!}

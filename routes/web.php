@@ -30,9 +30,10 @@ Route::post('password/reset','Auth\ResetPasswordController@reset');
 Route::resource('categories','CategoryController',['except'=>['create']]);
 Route::resource('tags','TagController',['except'=>['create']]);
 
-#Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle','middleware'=>'roles','roles'=>'User'])->where('slug','[\w\d\-\_]+');
+#Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle','middleware'=>'roles','roles'=>'User']);
 Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
 Route::get('blog',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
+
 Route::get('/','PagesController@getIndex');
 Route::get('/contact','PagesController@getContact');
 Route::post('/contact','PagesController@postContact');
@@ -50,4 +51,3 @@ Route::post('/account/add_logo',['uses'=>'AccountController@addLogo','as'=>'addL
 //User part
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);
 Route::resource('admin','AdminController');
-#hihi

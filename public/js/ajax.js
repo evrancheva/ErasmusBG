@@ -1,5 +1,6 @@
 //Deleting single image
 $(".deleteImage").click(function(){
+   e.preventDefault();
 	var id = $(this).attr('id');
     
 
@@ -21,6 +22,7 @@ $(".deleteImage").click(function(){
    });
 //delete PDF
 $(".deletePdf").click(function(){
+   e.preventDefault();
 	var id = $(this).attr('id');
     
 
@@ -35,7 +37,6 @@ $(".deletePdf").click(function(){
      success: function(){ // What to do if we succeed
          var pdf=document.getElementById('pdf'+id+'');
          pdf.remove();
-    		
 
     }
     });

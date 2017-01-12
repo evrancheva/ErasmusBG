@@ -5,12 +5,7 @@
 dl p{
 	    display: inline;
 }
-.fc-title{
-	        font-size: 20px;
-}
-.fc-content{
-	border:1px grey solid;
-}
+
 .deleteImage{
 	background: none;
     border: none;

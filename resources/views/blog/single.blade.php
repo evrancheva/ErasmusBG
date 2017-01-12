@@ -8,7 +8,7 @@
                 @endif
             <h1>{!! $post->title !!}</h1>
             <h1>{!! $post->body !!}</h1>
-            <p> Posted In : {!! $post->category->name !!}</p>
+           
         </div>
     </div>
     @stop
