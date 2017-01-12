@@ -52,5 +52,8 @@ Route::post('/account/add_logo',['uses'=>'AccountController@addLogo','as'=>'addL
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);
 //Admin
 Route::get('/admin',['as'=>'admin.dashboard','uses'=>'AdminController@getWelcome','middleware'=>'roles','roles'=>'Admin']);
+
 Route::get('/admin/posts',['as'=>'admin.posts','uses'=>'AdminController@getPosts','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/posts/{id}',['as'=>'admin.posts.show','uses'=>'AdminController@showPost','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/{id}/edit',['as'=>'admin.posts.edit','uses'=>'AdminController@showEditForm','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/users',['as'=>'admin.users','uses'=>'AdminController@getUsers','middleware'=>'roles','roles'=>'Admin']);

@@ -47,6 +47,14 @@ class AdminController extends Controller
         $users = User::orderBy('id','desc')->paginate(10);
         return view("admin.users.index")->withUsers($users);
     }
+    public function showPost($id){
+         $post = Post::find($id);
+         $images = PostImage::where('post_id','=', $id)->get();
+         return view("admin.posts.show")->withPost($post)->withImages($images);
+    }
+    public function showEditForm($id){
+        return view('admin.posts.edit');
+    }
 
     /**
      * Show the form for creating a new resource.
