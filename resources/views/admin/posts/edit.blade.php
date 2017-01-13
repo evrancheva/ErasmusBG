@@ -17,9 +17,9 @@
 @endsection
 
 @section('content')
-
+ <input class="id" type="hidden" value="{!!$post->id!!}">
     <div class="row">
-        {!! Form::model($post, ['route' => ['adin.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
+      {!! Form::model($post, ['route' => ['admin.posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!} 
         <div class="col-md-8">
             {!! Form::label('title', 'Title:') !!}
             {!! Form::text('title', null, ["class" => 'form-control input-lg input-circle']) !!}
@@ -60,7 +60,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('admin.show', 'Cancel', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
+                        {!! Html::linkRoute('admin.posts.show', 'Cancel', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
                     </div>
                     <div class="col-sm-6">
                         {!! Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) !!}
@@ -75,7 +75,7 @@
         <div id="pdf{!! $post->id !!}">
            <h1> Current Pdf file </h1>
           <div>
-              <button class='deletePdf' id='{!! $post->id !!}' class="fa fa-times"><i class="fa fa-times" aria-hidden="true"></i></button>
+              <button class='deletePostPdf' id='{!! $post->id !!}' class="fa fa-times"><i class="fa fa-times" aria-hidden="true"></i></button>
                 <a href="{{asset("/pdf/")}}/{!! $post->pdf !!}" download> {!! $post->title !!} - pdf file </a>
                
             </div>   
@@ -88,7 +88,7 @@
 
             @foreach($images as $image)
             <div class="col-md-4 ">
-                <button class='deleteImage ' id='{!! $image->id !!}' class="fa fa-times"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button class='deletePostImage' id='{!! $image->id !!}' class="fa fa-times"><i class="fa fa-times" aria-hidden="true"></i></button>
                 <img id='image{!! $image->id!!}' class='' src="{{asset("/images/")}}/{!! $image->image_small !!}" style="width:250;height:250px;">
                  </div>
             @endforeach
@@ -97,6 +97,7 @@
         @endif
     </div>  <!-- end of .row (form) -->
  </div>
+</div>
 @stop
 
 @section('scripts')

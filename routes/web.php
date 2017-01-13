@@ -53,7 +53,17 @@ Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashbo
 //Admin
 Route::get('/admin',['as'=>'admin.dashboard','uses'=>'AdminController@getWelcome','middleware'=>'roles','roles'=>'Admin']);
 
+#POST ADMIN
 Route::get('/admin/posts',['as'=>'admin.posts','uses'=>'AdminController@getPosts','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/posts/{id}',['as'=>'admin.posts.show','uses'=>'AdminController@showPost','middleware'=>'roles','roles'=>'Admin']);
-Route::get('/admin/{id}/edit',['as'=>'admin.posts.edit','uses'=>'AdminController@showEditForm','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/posts/{id}/edit',['as'=>'admin.posts.edit','uses'=>'AdminController@showEditFormPost','middleware'=>'roles','roles'=>'Admin']);
+Route::put('/admin/posts/{id}/edit',['as'=>'admin.posts.update','uses'=>'AdminController@updatePost','middleware'=>'roles','roles'=>'Admin']);
+Route::delete('/admin/posts/{id}',['as'=>'admin.posts.delete','uses'=>'AdminController@deletePost','middleware'=>'roles','roles'=>'Admin']);
+Route::post('admin/posts/{id}/deletePostImage/{image_id}', 'AdminController@destroyPostImage');
+Route::post('admin/posts/{id}/deletePostPdf/{pdf_id}', 'AdminController@destroyPostPdf');
+#USER ADMIN
 Route::get('/admin/users',['as'=>'admin.users','uses'=>'AdminController@getUsers','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/users/{id}',['as'=>'admin.users.show','uses'=>'AdminController@showUser','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/user/{id}/edit',['as'=>'admin.user.edit','uses'=>'AdminController@showEditUserForm','middleware'=>'roles','roles'=>'Admin']);
+Route::put('/admin/user/{id}/edit',['as'=>'admin.user.update','uses'=>'AdminController@updateUser','middleware'=>'roles','roles'=>'Admin']);
+Route::delete('/admin/user/{id}',['as'=>'admin.user.delete','uses'=>'AdminController@deleteUser','middleware'=>'roles','roles'=>'Admin']);

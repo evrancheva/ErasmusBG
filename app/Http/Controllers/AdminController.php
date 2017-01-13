@@ -52,119 +52,12 @@ class AdminController extends Controller
          $images = PostImage::where('post_id','=', $id)->get();
          return view("admin.posts.show")->withPost($post)->withImages($images);
     }
-    public function showEditForm($id){
-        return view('admin.posts.edit');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $tags = Tag::all();
-        $categories = Category::all();
-        return view("admin.create")->withCategories($categories)->withTags($tags);
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request,array(
-            'title' => 'required|max:255|unique:posts',
-            'body' => 'required',  
-            'location' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'organization_email' => 'required',           
-        ));
-    
-        $post = new Post;
-        $post->title = $request->title;
-        $post->slug =  preg_replace('/[^A-Za-z0-9-]+/', '-', $post->title);
-        $post->location = $request->location;
-        $post->start_date = $request->end_date;
-        $post->end_date = $request->end_date;
-        $post->organization_email = $request->organization_email;
-        $post->additional_link = $request->additional_link;
-        $post->body = Purifier::clean($request->body);
-          /*   $post->category_id = $request->category_id;*/
-        $post->user_id = Auth::user()->id;
-        if($request->hasFile('upload_file')){
-            $file = $request->file('upload_file');
-            $filename = time() . '.pdf';
-            $location = public_path('pdf/');
-            Input::file('upload_file')->move($location,$filename);
-            $post->pdf = $filename;
-        }
-        $post->save();
-        if($request->hasFile('featured_images')){
-            $files = Input::file('featured_images');  
-            foreach($files as $file) {
-                $destinationPath = public_path('images/');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                $upload_success = $file->move($destinationPath, $filename);
-                $postImage = new PostImage;
-                $idOfImage = Post::where('title', $request->title)->first();
-                $postImage->post_id = $idOfImage->id;
-                $postImage->image_small =  $filename;
-                $postImage->image_big =  $filename;
-                $postImage->save();
-              
-              }
-            }
-            
-        /*$post->tags()->sync($request->tags,false);*/
-        Session::flash('success','The blog post was successfully saved!');
-        return redirect()->route('admin.show',$post->id);
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+    public function showEditFormPost($id){
         $post = Post::find($id);
-        $images = PostImage::where('post_id','=', $id)->get();
-        return view('admin.show')->withPost($post)->withImages($images);
+         $images = PostImage::where('post_id','=', $id)->get();
+         return view("admin.posts.edit")->withPost($post)->withImages($images);
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $images = PostImage::where('post_id','=', $id)->get();
-        $tags = Tag::all();
-        $tagss = array();
-         foreach($tags as $tag){
-            $tagss[$tag->id]=$tag->name;
-        }
-        $categories = Category::all();
-        $cats = array();
-        foreach($categories as $category){
-            $cats[$category->id]=$category->name;
-        }
-        $post = Post::find($id);
-        return view('admin.edit')->withTags($tagss)->withPost($post)->withCategories($cats)->withImages($images);;
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function updatePost(Request $request, $id)
     {
         $post = Post::find($id);
        
@@ -182,21 +75,15 @@ class AdminController extends Controller
         $post->end_date = $request->end_date;
         $post->organization_email = $request->organization_email;
         $post->additional_link = $request->additional_link;        $post->body = Purifier::clean($request->input('body'));
-       /* if($request->featured_image){
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' .$filename);
-            Image::make($image)->resize(800,400)->save($location);
-             $oldFileName = $post->image;
-             $post->image = $filename;
-             Storage::delete($oldFileName);
-    }  */
+
      if($request->hasFile('featured_images')){
+
             $files = Input::file('featured_images');  
             foreach($files as $file) {
-                $destinationPath = public_path('images/');
+
+                $destinationPath = public_path('images\\');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-                $upload_success = $file->move($destinationPath, $filename);
+                Image::make($file)->crop(500,500)->save($destinationPath . $filename);
                 $postImage = new PostImage;
                 $idOfImage = Post::where('title', $request->title)->first();
                 $postImage->post_id = $idOfImage->id;
@@ -217,39 +104,30 @@ class AdminController extends Controller
         }
  
         $post->save();
-       /* if(isset($request->tags)){
-             $post->tags()->sync($request->tags);
-        }
-        else{
-             $post->tags()->sync(array());
-        }*/
+       
       
         Session::flash('success','The blog post was successfully edited!');
-        return redirect()->route('admin.show',$post->id);
+        return redirect()->route('admin.posts.show',$post->id);
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deletePost($id)
     {
         $post = Post::find($id);
-        $post->tags()->detach();
+        
         Storage::delete($post->image);
         $post->delete();
         Session::flash('success','The blog post was successfully deleted!');
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.posts');
     }
-    public function destroyImage($id){
+    
+
+    public function destroyPostImage($id){
          $id = $_POST['id'];
        $image = PostImage::find($id);
        $image->delete();
         Session::flash('success','The image was successfully deleted!');
        
     }
-     public function destroyPdf($id){
+     public function destroyPostPdf($id){
          $id = $_POST['id'];
         $post = Post::find($id);
         $oldFileName = $post->pdf;
@@ -258,6 +136,34 @@ class AdminController extends Controller
         $post->save();
              
         Session::flash('success','The pdf was successfully deleted!');
-       
     }
+    public function showUser($id){
+         $user = User::find($id);
+
+         return view("admin.users.show")->withUser($user);
+    }
+     public function showEditUserForm($id){
+        $user = User::find($id);
+        
+         return view("admin.users.edit")->withUser($user);
+    }
+     public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->confirmed = $request->confirmed;
+        $user->save();
+         Session::flash('success','The user was successfully confirmed!');
+          return view("admin.users.show")->withUser($user);
+    }
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        
+        Storage::delete($user->logo);
+        $user->delete();
+        Session::flash('success','The use was successfully deleted!');
+        return redirect()->route('admin.users');
+    }
+    
+
 }

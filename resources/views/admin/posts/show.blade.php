@@ -49,7 +49,7 @@
                         {!! Html::linkRoute('admin.posts.edit','Edit',array($post->id),array('class'=>'btn btn-circle btn-outline btn-block blue')) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! Form::open(['route'=>['posts.destroy',$post->id],'method' => 'DELETE']) !!}
+                        {!! Form::open(['route'=>['admin.posts.delete',$post->id],'method' => 'DELETE']) !!}
                         {!! Form::submit('Delete',array('class'=>'btn btn-circle btn-outline btn-block red ')) !!}
                         {!! Form::close() !!}
                     </div>

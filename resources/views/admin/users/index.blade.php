@@ -60,7 +60,9 @@
                                                     
                                                     <td>@if(!empty($user->phone))
                                                         {{$user->phone}} @else <h5>No phone </h5> @endif</td>
-                                                   <td></td>
+                                                   <td>
+
+                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

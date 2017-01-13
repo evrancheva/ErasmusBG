@@ -57,6 +57,7 @@
                                                     <td>{{date('M j, Y',strtotime($post->start_date))}} - {{date('M j, Y',strtotime($post->end_date))}}</td>
                                                     <td>
                                                      <a href="{{route("admin.posts.show",$post->id)}}" class="btn btn-circle btn-outline blue ">View</a>
+                                                     <a href="{{route("admin.posts.edit",$post->id)}}" class="btn btn-circle btn-outline red ">Edit</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
