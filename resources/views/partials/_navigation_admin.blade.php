@@ -27,16 +27,18 @@
         <div class="page-top">
             <!-- BEGIN HEADER SEARCH BOX -->
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-            <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET" >
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="query">
+            
+             
+                {!! Form::open(['route' => 'posts.search','method' => 'get','class' => 'search-form search-form-expanded']) !!}
+                   <div class="input-group">
+                    {!! Form::text('search',null,array('class'=>'form-control','placeholder' => 'Search...'))!!}
                             <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
+                                 {{Form::button('<i class="icon-magnifier"></i>', array('type' => 'submit', 'class' => ' btn submit'))}}
                             </span>
-                </div>
-            </form>
+                             </div>
+                {!!Form::close()!!}
+               
+           
             <!-- END HEADER SEARCH BOX -->
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">

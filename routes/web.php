@@ -39,8 +39,11 @@ Route::get('/contact','PagesController@getContact');
 Route::post('/contact','PagesController@postContact');
 Route::get('/about','PagesController@getAbout');
 Route::resource('posts','PostController');
+Route::post('/search',['uses'=>'PostController@searchPosts','as'=>'posts.search']);
+Route::get('/posts/results',['uses'=>'PostController@getResults','as'=>'posts.results']);
 //Route::resource('аccount','UserController',['except'=>['create','store']]);
 Route::resource('account','AccountController');
+
 
 Route::post('posts/{id}/deleteImage/{image_id}', 'PostController@destroyImage');
 Route::post('posts/{id}/deletePdf/{pdf_id}', 'PostController@destroyPdf');

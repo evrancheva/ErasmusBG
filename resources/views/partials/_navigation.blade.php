@@ -18,6 +18,17 @@
                 <li class="{{Request::is('/blog') ? "active": ""}}"><a href="/blog">Blog</a></li>
                 <li class="{{Request::is('/about') ? "active": ""}}"><a href="/about">About</a></li>
                 <li class="{{Request::is('/contact') ? "active": ""}}"><a href="/contact">Contact</a></li>
+                <li class="active"><a href="#dashboard.html">Начало </a></li>
+                    <li><a href="#recipes.html">Всички пътешествия</a></li>
+                    <li>
+                        <a  class="child" href="#">Календар </a>
+                        <ul class="hidden-nav2 collapse">
+                            <li class="drop"><a href="#">За нас</a></li>
+                            <li class="drop"><a id="next" href="#">Контакти</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#partners.html">Партньори </a></li>
+                    <li><a href="#about.html">За нас </a></li>
 
             </ul>
 

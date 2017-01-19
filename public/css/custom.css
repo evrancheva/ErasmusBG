@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto','Calibri';
+}
 .margin{
     margin-top:10px;
 }
@@ -23,4 +26,122 @@ dl p{
 .minilogo{
     width: 50px;
     height: 50px;
+}
+.margin-top-bottom{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.cover{
+    display:none;
+    position:absolute;
+    border-radius: 200px;
+
+    background: black;
+    width: 80%;
+    height: 81%;
+    left: 40px;
+    top: 30px;
+    opacity: 0.75;
+}
+.titleOfCategory{
+   font-size: 30px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: 60px;
+    opacity: 1;
+}
+.mainImageCategory, .img2{
+    border:5px black solid;
+}
+.plane{
+    font-size:40px;
+    color: #f4c542;
+}
+.read-more{
+   font-size: 17px;
+    position: relative;
+    float: right;
+    background: #f4c542;
+    font-weight: bold;
+    padding: 10px;
+    border-top: darkgrey 3px solid;
+    border-left: darkgrey 3px solid;
+    border-right: darkgrey 3px solid;
+    top: -48px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    color:black;
+}
+.line{
+    width: 100%;
+    border:1px darkgrey solid;
+}
+.title-product{
+    font-size:20px;
+    font-weight:bold;
+    text-decoration: none;
+    color:black;
+}
+.descr{
+     
+    text-decoration: none;
+    color:black;
+}
+.read-more:hover{
+     background: black;
+      color: #f4c542;
+}
+.cover2{
+    display:none;
+         position: absolute;
+    border-radius: 500px;
+    background: black;
+    width: 70%;
+    height: 78%;
+    left: 40px;
+    top: 26px;
+    opacity: 0.75;
+}
+.titleOfCategory2{
+     font-size: 17px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: 34px;
+    opacity: 1;
+}
+.plane2{
+    font-size:30px;
+    color: #f4c542;
+}
+.info{
+    font-weight: normal;
+    font-size:15px;
+    color:darkgrey;
+}
+.form{
+    background: darkgrey;
+    width: 100%;
+    height: 250px;
+  
+}
+.be-part{
+    font-size:50px;
+    opacity:1;
+    background: black;
+    color: #f4c542;
+    padding:15px;
+    text-decoration: none;
+    position:relative;
+    top:100px;
+}
+#owl-demo3{
+    margin-top:10px;
+}
+#owl-demo3     margin-top: 45px;{
+          margin-top: 45px;
 }
