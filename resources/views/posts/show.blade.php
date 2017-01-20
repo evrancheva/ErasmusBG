@@ -9,6 +9,7 @@
    </div>
    <div class="col-md-4 col-xs-12">
       <div class="well">
+
          <h2> Information </h2>
          <dl class="dl-horizontal">
             <label> URL: </label>
@@ -69,7 +70,13 @@
    @if(!$images->isEmpty())
 
    <div class="col-md-12">
-    
+      <div class="col-md-2">
+   @if(!empty($post->image)) 
+<h1> Main image </h1>
+         <img  src="{{asset("/images/")}}/{!! $post->image !!}" style="width:250;height:250px;">
+@endif
+      </div>
+      <div class="col-md-10">
       <h1 class="title">Photos</h1>
 
       @foreach($images as $image)
@@ -79,6 +86,7 @@
      </div>
       @endforeach
    </div>
+ </div>
 </div>
    @endif
 </div>

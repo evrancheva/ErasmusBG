@@ -2,7 +2,7 @@ body{
     font-family: 'Roboto','Calibri';
 }
 .margin{
-    margin-top:10px;
+    margin-top:5px;
 }
 
 dl p{
@@ -57,13 +57,13 @@ dl p{
 }
 .plane{
     font-size:40px;
-    color: #f4c542;
+    color: #ff9933;
 }
 .read-more{
    font-size: 17px;
     position: relative;
     float: right;
-    background: #f4c542;
+    background: #ff9933;
     font-weight: bold;
     padding: 10px;
     border-top: darkgrey 3px solid;
@@ -92,7 +92,7 @@ dl p{
 }
 .read-more:hover{
      background: black;
-      color: #f4c542;
+      color: #ff9933;
 }
 .cover2{
     display:none;
@@ -116,32 +116,213 @@ dl p{
 }
 .plane2{
     font-size:30px;
-    color: #f4c542;
+    color: #ff9933;
 }
 .info{
     font-weight: normal;
     font-size:15px;
-    color:darkgrey;
+    color:#6c6e70;
 }
 .form{
-    background: darkgrey;
+  
     width: 100%;
     height: 250px;
   
 }
-.be-part{
-    font-size:50px;
-    opacity:1;
-    background: black;
-    color: #f4c542;
-    padding:15px;
-    text-decoration: none;
-    position:relative;
-    top:100px;
-}
+
 #owl-demo3{
     margin-top:10px;
 }
-#owl-demo3     margin-top: 45px;{
+#owl-demo3 .owl-theme{
           margin-top: 45px;
 }
+.button-er{
+        font-size: 17px;
+    background: #ff9933;
+    font-weight: bold;
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+    position: absolute;
+    float: left;
+    bottom: 0px;
+    width: 94%;
+    border-top: 5px black solid;
+    text-align: center;
+}
+
+.button-er:hover{
+     text-decoration: none;
+    background: black;
+    color: #ff9933;
+    width: 94%;
+    height: 302px;
+    font-size: 50px;
+}
+.form{
+    width: 100%;
+    height:300px;
+        margin-top: 10px;
+
+
+}
+.register{
+   
+    background: lightgrey;
+    width: 100%;
+    height:300px;
+     background:url('/images/form.jpg')  top center no-repeat;
+     opacity: 0.8;
+    
+}
+.register2{
+   
+    background: lightgrey;
+    width: 100%;
+    height:300px;
+     background:url('/images/form2.jpg')  top center no-repeat;
+     opacity: 0.8;
+    
+}
+.text{
+        min-height: 146px;
+
+}
+.footer{
+        background: lightgrey;
+    color: white;
+    width: 100%;
+    height: 90px;
+}
+.footer2 p{
+    font-size:15px;
+    position:relative;
+    top:15px;
+    color:black;
+}
+.footer2{
+        background: lightgrey;
+    color: white;
+    width: 100%;
+    height: 50px;
+}
+.white{
+      background: white;
+    color: white;
+    width: 100%;
+    height: 15px;
+}
+.logo{
+       width: 70px;
+    height: 70px;
+    position: absolute;
+    top:8px;
+}
+.bottom-nav{
+    margin-top:13px;
+}
+.bottom-nav a{
+    color: black;
+    font-size:16px;
+
+}
+.bottom-nav a:hover,.bottom-nav a:active,.bottom-nav a:focus {
+    text-decoration: none;
+}
+.bottom-nav  li {
+    width: auto;
+    float: left;
+    /* margin-right: 20px; */
+    border-bottom: 2px black solid;
+    color: black;
+    text-decoration: none;
+    padding: 8px 9px;
+    display: block;
+    font-weight: bold;
+}
+.bottom-nav  li:hover{
+    border-bottom:2px solid white;
+;
+}
+.bottom-nav a:hover{
+    color: white;
+}
+.logo2{
+         width: 101px;
+    height: 101px;
+  
+}
+.top-nav{
+    margin-top:13px;
+}
+.top-nav a{
+    color: black;
+    font-size:20px;
+
+}
+.top-nav a:hover,.top-nav a:active,.top-nav a:focus {
+    text-decoration: none;
+}
+.top-nav  li {
+    width: auto;
+    float: left;
+    /* margin-right: 20px; */
+    border-bottom: 2px black solid;
+    color: black;
+    text-decoration: none;
+    padding: 8px 9px;
+    display: block;
+    font-weight: bold;
+}
+.top-nav  li:hover{
+    border-bottom:2px solid #ff9933;
+    background: none;
+;
+}
+.top-nav a:hover{
+    color: #ff9933;
+
+}
+.nav>li>a:focus, .nav>li>a:hover{
+    background: none;
+}
+.red{
+    color:red;
+}
+.small{
+    font-size:20px;
+}
+.form2{
+   
+    background:  url('/images/sunset.jpg')  top center no-repeat ;
+    padding:20px;
+    box-shadow: -webkit-box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
+-moz-box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
+box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
+border-radius: 15px;
+}
+.label{
+    font-size:17px;
+    color:black;
+    margin-bottom:5px;
+}
+.text-hidden{
+    opacity: 0;
+}
+.text2{
+        min-height: 20px;
+
+}
+.margin-top{
+    margin-top:30px;
+}
+.navbar-default{
+    background: none;
+}
+.navbar-default .navbar-nav>.active>a  {
+    color: #ff9933;
+    background: none;
+}
+.navbar-nav>li>a:hover{
+color: #ff9933;
+    }

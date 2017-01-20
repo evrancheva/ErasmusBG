@@ -62,7 +62,8 @@ class PostController extends Controller
             'location' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'organization_email' => 'required',           
+            'organization_email' => 'required', 
+            'logo'=>'required'          
         ));
 
     
@@ -77,6 +78,14 @@ class PostController extends Controller
         $post->body = Purifier::clean($request->body);
           /*   $post->category_id = $request->category_id;*/
         $post->user_id = Auth::user()->id;
+        if($request->hasFile('main_image')){
+                 $file = $request->file('main_image');
+                $destinationPath = public_path('images/');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
+                $post->image = $filename;
+        }
+
         if($request->hasFile('upload_file')){
             $file = $request->file('upload_file');
             $filename = time() . '.pdf';
@@ -190,7 +199,16 @@ class PostController extends Controller
         $post->end_date = $request->end_date;
         $post->organization_email = $request->organization_email;
         $post->additional_link = $request->additional_link;        $post->body = Purifier::clean($request->input('body'));
+         if($request->hasFile('main_image')){
+                 $file = $request->file('main_image');
+                $destinationPath = public_path('images/');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
+                Storage::delete($post->image); 
+                $post->image = $filename;
 
+              
+        }
        /* if($request->featured_image){
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();

@@ -32,7 +32,7 @@ header nav ul li a{
     margin-top: -50px;
     text-align: center;
 }
-.owl-buttons {
+#owl-demo .owl-buttons {
     position: absolute;
     top: 110PX;
     width: 100%;

@@ -2,20 +2,9 @@
 @section('title','| Homepage')
 @section('stylesheets')
 
-    {!! Html::style('css/font-awesome.css') !!}
-    {!! Html::style('css/font-awesome.min.css') !!}
-      {!! Html::style('css/owl.carousel.css') !!}
-    {!! Html::style('css/owl.theme.css') !!}
-      {!! Html::style('css/font-awesome.css') !!}
-    {!! Html::style('css/owl.transitions.css') !!}
-      {!! Html::style('css/reset.css') !!}
-    {!! Html::style('css/style.css') !!}
-      {!! Html::style('css/custom.css') !!}
+   
 @endsection
 @section('content')
-<div class="container-fluid">
-    <img class="img-responsive" src="{{asset("/images/hW9bY1478716337.jpg")}}">
-</div>
 
 <div class="container">
     <span class="titleOfarticle">ТОП ЕРАЗЪМ ПРОЕКТИ</span>
@@ -31,6 +20,10 @@
                                 <div class="titleOfCategory">
                                     <i class="fa fa-plane plane" aria-hidden="true"></i>
                                     <div>{!! $post->title !!}</div>
+                                    <span class="small red">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i> 
+                                       {{date('d-m-Y',strtotime($post->start_date))}} до {{date('d-m-Y',strtotime($post->end_date))}}
+                                   </span>
                                 </div>
                             </div>
                              <img src="{{asset("/images/")}}/{!! $post->image !!}" class="mainImageCategory img-responsive">
@@ -52,7 +45,7 @@
             <span class="titleOfarticle">Последно добавени</span>
              @foreach($posts as $post)
               <a href="{!! url('blog/'.$post->slug) !!}">
-            <div class="row margin">
+            <div class="row margin ">
                 <div class="col-md-12 trip">
                     <div class="row">
                 <div class="col-md-4">
@@ -76,12 +69,18 @@
                                           {!! $post->location !!} 
                                         <i class="fa fa-university" aria-hidden="true"></i>
                                           {!! $post->user_id !!}
+                                          <span class="red">
+                                          <i class="fa fa-calendar" aria-hidden="true"></i> 
+                                       {{date('d-m-Y',strtotime($post->start_date))}} до {{date('d-m-Y',strtotime($post->end_date))}}
+                                      </span>
                                     </div>
                            
                         </div>
                         <br>
                         <div class="descr">
+                            <div class="text">
                            {!! $post->body !!}
+                       </div>
                                    <div class="line"></div>
                            <span class="read-more"> Read more </span>
 
@@ -102,46 +101,76 @@
                 <div class="fb">
                     <div class="fb-page" data-href="https://www.facebook.com/Erasmusbgcom-325695476033/?fref=ts" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
                 </div>
-                <div class="banner-big"><a href="https://abv.bg/"><img class="img-responsive img2"src="http://zonapharm.neptundeals.eu//files/products/4d91ad4d44d1ba9f74410063b087c98e.jpg"></a> </div>
+                <div class="banner-big"><a href="https://abv.bg/"><img src="{{asset("/images/300x600.jpg")}}" class=" img-responsive"></div>
             </div>
         </div>
 
         </div>
     </div>
 </div>
+@if(!Auth::check())
 <div class="container">
-<span class="titleOfarticle">Организации</span>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="owl-demo3">
-                  @foreach($users as $user)
-                    <div class="item">
-                     <img src="{{asset("/images/")}}/{!! $user->logo !!}" class=" img-responsive">
-                   </div>
-            @endforeach
-                
-                
-            </div>
+        <span class="titleOfarticle">Бъди част от нас</span>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form">
+                    <div class="row">
+                <div class="col-md-5">
+                    <a href="{!! route('register') !!}">
+                    <div class="register">
+                        <a class="button-er" href="{!! route('register') !!}">
+                            Регистрирай своята организация
 
-            <!--
-            <div class="form">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-offset-2 col-md-4">
-                            <a class="be-part">
-                                Стани част
-                            </a>
-                        </div>
-                        <div class="col-md-offset-2 col-md-4">
-                            <a class="be-part">
-                                Стани част
-                            </a>
-                        </div>
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    </a>
+                </div>
+                 <div class="col-md-offset-2 col-md-5">
+                    <a href="{!! route('login') !!}">
+                        <div class="register2">
+                      <a class="button-er" href="{!! route('login') !!}">
+                            Влез в своя акаунт <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </a>
+                </div>
+                </div>
+             </div>
+         </div>
+        </div>
+</div>
+@else
+    <div class="container">
+         <span class="titleOfarticle"></span>
+         <div class="row">
+                    <div class=" col-md-12">
+                       
+            <img src="{{asset("/images/thank.png")}}" class="img-responsive margin" >
+                      
                     </div>
                 </div>
             </div>
-        </div>
-    -->
+
+@endif
+<div class="container">
+
+<span class="titleOfarticle">Организации</span>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-offset-2"
+            <div id="owl-demo3">
+                  @foreach($users as $user)
+                    <div class="item">
+                     <img src="{{asset("/images/")}}/{!! $user->logo !!}" class="img-responsive img-circle" style="width:50px; height:50px;">
+                     <p>{!!$user->name!!}</p>
+                   </div>
+            @endforeach
+                
+                </div>
+            </div>
+
     </div>
     </div>
     </div>

@@ -19,7 +19,7 @@ class BlogController extends Controller
 
     public function getIndex()
     {
-        $posts = Post::orderBy('id','desc')->paginate(2);
+        $posts = Post::orderBy('id','desc')->paginate(6);
         return view('blog.index')->withPosts($posts);
 
     }

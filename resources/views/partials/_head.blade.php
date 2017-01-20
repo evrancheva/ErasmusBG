@@ -11,7 +11,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    {!!Html::style('css/styles.css')!!}
+
+     {!! Html::style('css/font-awesome.css') !!}
+    {!! Html::style('css/font-awesome.min.css') !!}
+      {!! Html::style('css/owl.carousel.css') !!}
+    {!! Html::style('css/owl.theme.css') !!}
+      {!! Html::style('css/font-awesome.css') !!}
+    {!! Html::style('css/owl.transitions.css') !!}
+      {!! Html::style('css/reset.css') !!}
+    {!! Html::style('css/style.css') !!}
+      {!! Html::style('css/custom.css') !!}
+      
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
