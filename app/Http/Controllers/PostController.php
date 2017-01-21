@@ -70,7 +70,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug =  preg_replace('/[^A-Za-z0-9-]+/', '-', $post->title);
         $post->location = $request->location;
-        $post->start_date = $request->end_date;
+        $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
         $post->organization_email = $request->organization_email;
         $post->additional_link = $request->additional_link;
