@@ -35,7 +35,8 @@
         {!! Form::text('organization_email',null,array('class'=>'form-control input-lg input-circle','required'=>'','maxlength:256'))!!}
           {!! Form::label('additional_link','Additional link:') !!}
         {!! Form::text('additional_link',null,array('class'=>'form-control input-lg input-circle','required'=>'','maxlength:256'))!!}
-
+{!! Form::label('main_image',"Replace main image :") !!}
+           {!! Form::file('main_image') !!}
   {!! Form::label('featured_images',"Upload More Images:") !!}
        {!! Form::file('featured_images[]', array('multiple'=>true)) !!}
 
@@ -71,8 +72,12 @@
             </div>
 
         {!! Form::close() !!}
-
+        @if(!empty($post->image)) 
+<h1> Current main image </h1>
+         <img  src="{{asset("/images/")}}/{!! $post->image !!}" style="width:250;height:250px;">
+@endif
         @if(!empty($post->pdf))
+        
         <div id="pdf{!! $post->id !!}">
            <h1> Current Pdf file </h1>
           <div>
@@ -82,6 +87,7 @@
             </div>   
         </div>
             @endif
+
         @if(!$images->isEmpty())
             <h1> Current Images </h1>
             <div class="row">

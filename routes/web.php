@@ -17,7 +17,7 @@ Route::get('login',['uses'=>'Auth\LoginController@showLoginForm','as'=>'login'])
 Route::post('login','Auth\LoginController@login');
 Route::get('logout',['uses'=>'Auth\LoginController@logout','as'=>'logout']);
 
-Route::get('register','Auth\RegisterController@showRegistrationForm');
+Route::get('register',['uses'=>'Auth\RegisterController@showRegistrationForm','as'=>'register']);
 Route::post('register','Auth\RegisterController@register');
 
 //Password Reset
@@ -34,13 +34,16 @@ Route::resource('tags','TagController',['except'=>['create']]);
 Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
 Route::get('blog',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
 
-Route::get('/','PagesController@getIndex');
+Route::get('/',['uses'=>'PagesController@getIndex','as'=>'index']);
 Route::get('/contact','PagesController@getContact');
 Route::post('/contact','PagesController@postContact');
 Route::get('/about','PagesController@getAbout');
 Route::resource('posts','PostController');
+Route::post('/search',['uses'=>'PostController@searchPosts','as'=>'posts.search']);
+Route::get('/posts/results',['uses'=>'PostController@getResults','as'=>'posts.results']);
 //Route::resource('аccount','UserController',['except'=>['create','store']]);
 Route::resource('account','AccountController');
+
 
 Route::post('posts/{id}/deleteImage/{image_id}', 'PostController@destroyImage');
 Route::post('posts/{id}/deletePdf/{pdf_id}', 'PostController@destroyPdf');

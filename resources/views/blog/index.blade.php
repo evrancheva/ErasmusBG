@@ -1,30 +1,76 @@
 @extends('layouts.main')
 @section('title','| Blog ')
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1>Blog</h1>
-        </div>
-    </div>
-    @foreach($posts as $post)
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-          <!--     @if(!empty($post->image))
-                <img src="{!! asset('images/'. $post->image)!!}">
-                @endif -->
-                <h2>{!! $post->title !!}</h2>
-                <h5>Published: {!! date('M j, Y',strtotime($post->created_at)) !!}</h5>
-                <p>{!! substr(strip_tags($post->body),0,250) !!} {!! strlen(strip_tags($post->body))>250 ? '...':'' !!}</p>
-                <a href="{{route('blog.single',$post->slug)}}" class="btn btn-primary">Read more</a>
-                <hr>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<span class="titleOfarticle">Всички проекти</span>
+<div class="row">
+     <div class="col-md-8 trip margin">
+   @foreach($posts as $post)
+   
+     
+        <a href="{!! url('blog/'.$post->slug) !!}">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="category2">
+                  <div class="cover2" style="dislay:none">
+                     <div class="titleOfCategory2">
+                        <i class="fa fa-plane plane2" aria-hidden="true"></i>
+                        <div>{!! $post->title !!}</div>
+                     </div>
+                  </div>
+                  <img src="{{asset("/images/")}}/{!! $post->image !!}" class="mainImageCategory img-responsive">
+               </div>
             </div>
-        </div>
-    @endforeach
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-center">
-                {!!  $posts->render()!!}
+            <div class="col-md-8">
+               <div class="title-product">
+                  <strong>{!! $post->title !!}</strong>
+                  <div class="info">
+                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                     {!! $post->location !!} 
+                     <i class="fa fa-university" aria-hidden="true"></i>
+                     {!! $post->user_id !!}
+                     <span class="red">
+                     <i class="fa fa-calendar" aria-hidden="true"></i> 
+                     {{date('d-m-Y',strtotime($post->start_date))}} до {{date('d-m-Y',strtotime($post->end_date))}}
+                     </span>
+                  </div>
+               </div>
+               <br>
+               <div class="descr">
+                  <div class="text">
+                     {!! $post->body !!}
+                  </div>
+                  <div class="line"></div>
+                  <span class="read-more"> Read more </span>
+               </div>
             </div>
-        </div>
-    </div>
-    @stop
+         </div>
+           </a>
+ 
+    
+   @endforeach
+     </div>
+   <div class="col-md-4">
+    <div class="fb2 margin-top-bottom">
+                    <div class="fb-page" data-href="https://www.facebook.com/Erasmusbgcom-325695476033/?fref=ts" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+                </div>
+                <div class="banner margin-top-bottom">
+                        <img src="{{asset("/images/banner300.gif")}}" class=" img-responsive">
+                </div>
+                 <div class="banner margin-top-bottom">
+                        <img src="{{asset("/images/banner300.gif")}}" class=" img-responsive">
+                </div>
+
+   </div>
+</div>
+   <div class="row">
+      <div class="col-md-12">
+         <div class="text-center">
+            {!!  $posts->render()!!}
+         </div>
+      </div>
+   </div>
+</div>
+@stop

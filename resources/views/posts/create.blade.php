@@ -51,6 +51,8 @@
         <option value='{!! $category->id!!}'>{!!$category->name!!}</option>
     @endforeach
 </select> -->
+       {!! Form::label('main_image',"Upload main image* :") !!}
+           {!! Form::file('main_image') !!}
         {!! Form::label('featured_images',"Upload Featured Images* :") !!}
        {!! Form::file('featured_images[]', array('multiple'=>true)) !!}
          {!! Form::label('upload_file',"Upload PDF:") !!}

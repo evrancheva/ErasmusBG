@@ -62,13 +62,14 @@ class PostController extends Controller
             'location' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'organization_email' => 'required',           
+            'organization_email' => 'required', 
+            'logo'=>'required'          
         ));
 
     
         $post = new Post;
         $post->title = $request->title;
-        $post->slug =  preg_replace('/[^A-Za-z0-9-]+/', '-', $post->title);
+        $post->slug =  cyr2url($post->title);
         $post->location = $request->location;
         $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
@@ -77,6 +78,14 @@ class PostController extends Controller
         $post->body = Purifier::clean($request->body);
           /*   $post->category_id = $request->category_id;*/
         $post->user_id = Auth::user()->id;
+        if($request->hasFile('main_image')){
+                 $file = $request->file('main_image');
+                $destinationPath = public_path('images/');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
+                $post->image = $filename;
+        }
+
         if($request->hasFile('upload_file')){
             $file = $request->file('upload_file');
             $filename = time() . '.pdf';
@@ -92,7 +101,8 @@ class PostController extends Controller
 
                 $destinationPath = public_path('images/');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-                $upload_success = $file->move($destinationPath, $filename);
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
+              
                 $postImage = new PostImage;
                 $idOfImage = Post::where('title', $request->title)->first();
                 $postImage->post_id = $idOfImage->id;
@@ -185,10 +195,20 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->location = $request->location;
         $post->start_date = $request->start_date;
+         $post->slug =  cyr2url($post->title);
         $post->end_date = $request->end_date;
         $post->organization_email = $request->organization_email;
         $post->additional_link = $request->additional_link;        $post->body = Purifier::clean($request->input('body'));
+         if($request->hasFile('main_image')){
+                 $file = $request->file('main_image');
+                $destinationPath = public_path('images/');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
+                Storage::delete($post->image); 
+                $post->image = $filename;
 
+              
+        }
        /* if($request->featured_image){
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
@@ -206,7 +226,7 @@ class PostController extends Controller
 
                 $destinationPath = public_path('images\\');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-                Image::make($file)->crop(500,500)->save($destinationPath . $filename);
+                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
                 $postImage = new PostImage;
                 $idOfImage = Post::where('title', $request->title)->first();
                 $postImage->post_id = $idOfImage->id;
@@ -273,4 +293,14 @@ class PostController extends Controller
         Session::flash('success','The pdf was successfully deleted!');
        
     }
+    public function searchPosts(Request $request){
+        $results = Post::where('title', 'LIKE', '%'.$request->search.'%')->get();
+       return view("posts.results")->withResults($results);
+    }
+    public function getResults(){
+        
+    }
+
+    
+
 }

@@ -5,17 +5,20 @@ use App\Post;
 use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use App\PostImage;
+use App\User;
 
 class PagesController extends Controller{
     
     public function getIndex(){
-
+        $users = User::where('confirmed','=','1')->get();
         $posts = Post::orderBy('created_at','desc')->limit(4)->get();
-        return view('pages.welcome')->withPosts($posts);
+        
+        return view('pages.welcome')->withPosts($posts)->withUsers($users);
     }
     public function getAbout(){
-        return view('pages.about');
+        $posts = Post::orderBy('created_at','desc')->limit(4)->get();
+        return view('pages.about')->withPosts($posts);
     }
     public function getContact(){
         return view('pages.contact');
