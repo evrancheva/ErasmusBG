@@ -1,36 +1,4 @@
-body{
-    font-family: 'Roboto','Calibri';
-}
-.margin{
-    margin-top:5px;
-}
 
-dl p{
-	    display: inline;
-}
-
-.deleteImage{
-	background: none;
-    border: none;
-    font-size: 29px;
-    position: absolute;
-    color: red;
-}
-.deletePdf{
-		background: none;
-    border: none;
-    font-size: 29px;
-    
-    color: red;
-}
-.minilogo{
-    width: 50px;
-    height: 50px;
-}
-.margin-top-bottom{
-    margin-top:10px;
-    margin-bottom:10px;
-}
 .cover{
     display:none;
     position:absolute;
@@ -167,27 +135,63 @@ dl p{
 
 }
 .register{
-   
+   text-align: center;
     background: lightgrey;
+    width: 400px;
+    height: 400px;
+    background: url(/images/laptop2.png) top center no-repeat;
+    background-color: rgba(248, 247, 216, 0.7);
+    opacity: 1;
+    border-radius: 50%;
+    color:black;
+    border:5px black solid;
+  position: relative;
+}
+.layer{
+      background-color: rgba(197, 203, 214, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:300px;
-     background:url('/images/form.jpg')  top center no-repeat;
-     opacity: 0.8;
-    
+    height: 100%;
+    border-radius: 50%;
+}
+.layer2{
+      background-color: rgba(197, 203, 214, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .register2{
-   
+   text-align: center;
     background: lightgrey;
-    width: 100%;
-    height:300px;
-     background:url('/images/form2.jpg')  top center no-repeat;
-     opacity: 0.8;
-    
+    width: 400px;
+    height:400px;
+     background:url('/images/laptop.png')  top center no-repeat;
+     opacity: 1;
+      border-radius: 50%;
+         border:5px black solid;
+}
+.register2:hover, .register:hover{
+   
+    background: black
 }
 .text{
         min-height: 146px;
 
 }
+.register a, .register2 a{
+    text-decoration: none;
+    position: relative;
+    top: 133px;
+    color: black;
+    font-size:38px;
+    font-weight: bold
+}
+
 .footer{
         background: lightgrey;
     color: white;
@@ -326,3 +330,13 @@ border-radius: 15px;
 .navbar-nav>li>a:hover{
 color: #ff9933;
     }
+.nav li a:active{
+    color:#ff9933;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    background: none;
+}
+.margin-top-bottom{
+    margin-top:10px;
+    margin-bottom:10px;
+}

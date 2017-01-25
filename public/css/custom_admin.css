@@ -1,0 +1,33 @@
+body{
+    font-family: 'Roboto','Calibri';
+}
+.margin{
+    margin-top:5px;
+}
+
+dl p{
+	    display: inline;
+}
+
+.deleteImage{
+	background: none;
+    border: none;
+    font-size: 29px;
+    position: absolute;
+    color: red;
+}
+.deletePdf{
+		background: none;
+    border: none;
+    font-size: 29px;
+    
+    color: red;
+}
+.minilogo{
+    width: 50px;
+    height: 50px;
+}
+.margin-top-bottom{
+    margin-top:10px;
+    margin-bottom:10px;
+}

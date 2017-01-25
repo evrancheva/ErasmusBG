@@ -63,7 +63,7 @@ class PostController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'organization_email' => 'required', 
-            'logo'=>'required'          
+            'main_image'=>'required'          
         ));
 
     

@@ -56,15 +56,12 @@
                     title: '{!! $post->title!!}, {!! $post->location !!}',
                     start: '{!! $post->start_date!!}',
                     end: '{!! $post->end_date!!}',
-<<<<<<< HEAD
                     color: '#ffcc00',
-                    url:'posts/{!! $post->id!!}'
+                    url:'posts/{!! $post->id!!}',
                     /*url: '{$SITE}events/{$i.id}-{$i.url}.html'*/
-    
-=======
                     color: '#17C4BB',
                     url:'posts/{!! $post->id!!}'    
->>>>>>> b680172ac1ac0eaa3c05c1ba9bb323098e252612
+
                 },
     
                @endforeach

@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8" />
-    <title>Posts @yield('title')</title>
+    <title>ErasmusBG.com @yield('title')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="author" />
@@ -8,7 +8,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">    
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -30,6 +30,6 @@
     {!!Html::style('assets/layouts/layout2/css/layout.min.css')!!}
     {!!Html::style('assets/layouts/layout2/css/themes/blue.min.css')!!}
     {!!Html::style('assets/layouts/layout2/css/custom.min.css')!!}
-    {!!Html::style('css/custom.css')!!}
+    {!!Html::style('css/custom_admin.css')!!}
 </head>
 <!-- END HEAD -->
