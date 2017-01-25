@@ -15,10 +15,13 @@
 
             {!! Form::checkbox('remember') !!}{!! Form::label('remember','Remember Me') !!}
             {!! Form::submit('Login',['class'=>'btn btn-primary btn-block']) !!}
+             <a href="{!! route('register') !!}" class="btn-block btn btn-danger"> Register here </a>
             <p><a href="{!! url('password/reset') !!}">Forgot password </a></p>
+
             {!! Form::close() !!}
         </div>
         </div>
     </div>
+</div>
 </div>
 @stop

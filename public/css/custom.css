@@ -227,7 +227,7 @@
 }
 .bottom-nav a{
     color: black;
-    font-size:16px;
+    font-size:15px;
 
 }
 .bottom-nav a:hover,.bottom-nav a:active,.bottom-nav a:focus {
@@ -245,11 +245,11 @@
     font-weight: bold;
 }
 .bottom-nav  li:hover{
-    border-bottom:2px solid white;
+    border-bottom:2px solid #ff9933;
 ;
 }
 .bottom-nav a:hover{
-    color: white;
+    color: #ff9933;
 }
 .logo2{
          width: 101px;
@@ -339,4 +339,7 @@ color: #ff9933;
 .margin-top-bottom{
     margin-top:10px;
     margin-bottom:10px;
+}
+.mrg{
+    margin-top:5px;
 }
