@@ -31,8 +31,8 @@ Route::resource('categories','CategoryController',['except'=>['create']]);
 Route::resource('tags','TagController',['except'=>['create']]);
 
 #Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle','middleware'=>'roles','roles'=>'User']);
-Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
-Route::get('blog',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
+Route::get('trips/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
+Route::get('trips',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
 
 Route::get('/',['uses'=>'PagesController@getIndex','as'=>'index']);
 Route::get('/contact','PagesController@getContact');

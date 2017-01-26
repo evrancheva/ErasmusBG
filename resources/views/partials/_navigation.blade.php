@@ -17,10 +17,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav top-nav ">
                 <li class="{{Request::is('/') ? "active": ""}}"><a href="/">Начало</a></li>
-                <li class="{{Request::is('/blog') ? "active": ""}}"><a href="/blog">Всички проекти</a></li>
-                <li class="{{Request::is('/about') ? "active": ""}}"><a href="/about">За нас</a></li>
+                <li class="{{Request::is('trips') ? "active": ""}}"><a href="/trips">Всички проекти</a></li>
+                <li class="{{Request::is('about') ? "active": ""}}"><a href="/about">За нас</a></li>
                 
-                <li class="{{Request::is('/partners') ? "active": ""}}"><a href="/partners">Партньори</a></li>
+                <li class="{{Request::is('partners') ? "active": ""}}"><a href="/partners">Партньори</a></li>
                 <li class=""><a @if(!Auth::check()) href="{!! route('login') !!}" @else href="/dashboard" @endif>За организации</a></li>
                  
 
@@ -51,5 +51,5 @@
 
 <div class="container-fluid">
     <div class="row">
-    <img class="img-responsive" src="{{asset("/images/hW9bY1478716337.jpg")}}">
+    <img class="img-responsive" src="{{asset("/images/cover.png")}}">
 </div>

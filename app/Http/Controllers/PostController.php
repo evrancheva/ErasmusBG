@@ -63,7 +63,7 @@ class PostController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'organization_email' => 'required', 
-            'logo'=>'required'          
+            'main_image'=>'required'          
         ));
 
     
@@ -71,7 +71,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug =  cyr2url($post->title);
         $post->location = $request->location;
-        $post->start_date = $request->end_date;
+        $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
         $post->organization_email = $request->organization_email;
         $post->additional_link = $request->additional_link;

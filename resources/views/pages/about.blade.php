@@ -38,7 +38,7 @@
         	<div class="col-md-5">
           <span class="titleOfarticle "><span class="text-hidden">fweomfwio</span></span>
              @foreach($posts as $post)
-              <a href="{!! url('blog/'.$post->slug) !!}">
+              <a href="{!! url('trips/'.$post->slug) !!}">
             <div class="row margin ">
                 <div class="col-md-12 trip">
                     <div class="row">
@@ -63,7 +63,7 @@
                                           {!! $post->location !!} 
                                           <br>
                                         <i class="fa fa-university" aria-hidden="true"></i>
-                                          {!! $post->user_id !!}
+                                          {!! $post->user->name !!}
                                           <br>
                                           <span class="red">
                                           <i class="fa fa-calendar" aria-hidden="true"></i> 

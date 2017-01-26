@@ -56,8 +56,12 @@
                     title: '{!! $post->title!!}, {!! $post->location !!}',
                     start: '{!! $post->start_date!!}',
                     end: '{!! $post->end_date!!}',
+                    color: '#ffcc00',
+                    url:'posts/{!! $post->id!!}',
+                    /*url: '{$SITE}events/{$i.id}-{$i.url}.html'*/
                     color: '#17C4BB',
                     url:'posts/{!! $post->id!!}'    
+
                 },
     
                @endforeach

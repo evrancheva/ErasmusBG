@@ -10,7 +10,7 @@
    @foreach($posts as $post)
    
      
-        <a href="{!! url('blog/'.$post->slug) !!}">
+        <a href="{!! url('trips/'.$post->slug) !!}">
          <div class="row">
             <div class="col-md-4">
                <div class="category2">
@@ -30,7 +30,7 @@
                      <i class="fa fa-map-marker" aria-hidden="true"></i> 
                      {!! $post->location !!} 
                      <i class="fa fa-university" aria-hidden="true"></i>
-                     {!! $post->user_id !!}
+                     {!! $post->user->name !!}
                      <span class="red">
                      <i class="fa fa-calendar" aria-hidden="true"></i> 
                      {{date('d-m-Y',strtotime($post->start_date))}} до {{date('d-m-Y',strtotime($post->end_date))}}

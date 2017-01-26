@@ -1,8 +1,13 @@
 @extends('layouts.main')
 @section('title','| Register')
 @section('content')
+<div class="container">
+
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
+    <span class="titleOfarticle">Всички проекти</span>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 form2 margin">
             Please fill in the required fields * 
             {!! Form::open() !!}
             {!! Form::label('name','Name* :') !!}
@@ -28,9 +33,12 @@
             {!! Form::label('logo','Logo of your organization* :') !!}
             {!! Form::file('logo') !!}
            
-            {!! Form::submit('Register',['class'=>'btn btn-primary btn-block']) !!}
+            {!! Form::submit('Register',['class'=>'btn btn-primary btn-block mrg']) !!}
 
             {!! Form::close() !!}
+            </div>
         </div>
+        </div>
+    </div>
     </div>
 @stop

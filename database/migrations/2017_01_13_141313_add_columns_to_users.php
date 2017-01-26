@@ -15,7 +15,7 @@ class AddColumnsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
            $table->string('motivation')->nullable()->after('password');
-           $table->int('confirmed')->nullable()->after('password')->default('0');
+           $table->integer('confirmed')->nullable()->after('password')->default('0');
         });
     }
 
