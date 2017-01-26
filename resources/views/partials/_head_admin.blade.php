@@ -30,6 +30,6 @@
     {!!Html::style('assets/layouts/layout2/css/layout.min.css')!!}
     {!!Html::style('assets/layouts/layout2/css/themes/blue.min.css')!!}
     {!!Html::style('assets/layouts/layout2/css/custom.min.css')!!}
-    {!!Html::style('css/custom.css')!!}
+    {!!Html::style('css/custom_admin.css')!!}
 </head>
 <!-- END HEAD -->

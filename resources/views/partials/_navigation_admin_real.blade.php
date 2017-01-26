@@ -100,13 +100,7 @@
                         <span class="arrow"></span>
                     </a>
                 </li>
-                 <li class="{{Request::is('account') ? "active": ""}} nav-item start ">
-                    <a href="/account" class=" nav-link nav-toggle" >
-                        <i class="fa fa-cogs" aria-hidden="true"></i>
-                        <span class="title">Настройки</span>
-                        <span class="arrow"></span>
-                    </a>
-                </li>
+              
              
               <li class="{{Request::is('admin/users') ? "active": ""}} nav-item start ">
                     <a  href="{!! route('admin.users')!!}" class=" nav-link nav-toggle" >
