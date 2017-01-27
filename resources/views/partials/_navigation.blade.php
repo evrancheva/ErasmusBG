@@ -20,7 +20,7 @@
                 <li class="{{Request::is('trips') ? "active": ""}}"><a href="/trips">Всички проекти</a></li>
                 <li class="{{Request::is('about') ? "active": ""}}"><a href="/about">За нас</a></li>
                 
-                <li class="{{Request::is('partners') ? "active": ""}}"><a href="/partners">Партньори</a></li>
+                <li class="{{Request::is('organizations') ? "active": ""}}"><a href="/organizations">Партньори</a></li>
                 <li class=""><a @if(!Auth::check()) href="{!! route('login') !!}" @else href="/dashboard" @endif>За организации</a></li>
                  
 
@@ -51,5 +51,6 @@
 
 <div class="container-fluid">
     <div class="row">
-    <img class="img-responsive" src="{{asset("/images/cover.png")}}">
+         <div class="parallax">
+    <img class="img-responsive" src="{{asset("/images/cover.png")}}"></div>
 </div>

@@ -31,3 +31,10 @@ dl p{
     margin-top:10px;
     margin-bottom:10px;
 }
+.right{
+margin-right:10px;
+    }
+.dl-horizontal label ,.dl-horizontal p{
+    font-size: 18px;
+    font-weigth:bold;
+}

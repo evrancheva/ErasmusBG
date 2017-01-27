@@ -20,8 +20,15 @@ class PagesController extends Controller{
         $posts = Post::orderBy('created_at','desc')->limit(4)->get();
         return view('pages.about')->withPosts($posts);
     }
+    public function getOrganizations(){
+        $organizations = User::where('confirmed','=','1')->orderBy('created_at','desc')->get();
+        return view('pages.organizations')->withOrganizations($organizations);
+    }
     public function getContact(){
         return view('pages.contact');
+    }
+     public function getTerms(){
+        return view('pages.terms');
     }
     public function postContact(Request $request){
         $this->validate($request, array(

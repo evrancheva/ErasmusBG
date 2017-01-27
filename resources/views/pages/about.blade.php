@@ -60,7 +60,7 @@
                             <strong>{!! $post->title !!}</strong>
                               <div class="info">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                                          {!! $post->location !!} 
+                                          {!! $post->location !!}, {!! $post->country->name !!}  
                                           <br>
                                         <i class="fa fa-university" aria-hidden="true"></i>
                                           {!! $post->user->name !!}

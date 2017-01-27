@@ -13,7 +13,7 @@
                 <li class="{{Request::is('/about') ? "active": ""}}"><a href="/about">За нас</a></li>
               	<li class="{{Request::is('/partners') ? "active": ""}}"><a href="/partners">Партньори</a></li>
                 <li class=""><a @if(!Auth::check()) href="{!! route('login') !!}" @else href="/dashboard" @endif>За организации</a></li>
-  				<li class="{{Request::is('/terms') ? "active": ""}}"><a href="/contact">Общи условия</a></li>
+  				<li class="{{Request::is('/terms') ? "active": ""}}"><a href="/terms">Общи условия</a></li>
 			</ul>
 			</div></div>
 			<div class="white">

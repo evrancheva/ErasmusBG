@@ -20,46 +20,44 @@
 @section('content')
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
-        <h2>Create New Post</h2>
-        <h4>Please fill in the required fields</h4>
+        <h2>Добави нов проект</h2>
+        <h4>Моля попълнете задължителните полета*</h4>
         <hr>
-        {!! Form::open(['route' => 'posts.store','data-parsley-validate'=>'','files'=>true]) !!}
-        {!! Form::label('title','Title* :') !!}
-        {!! Form::text('title',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
-         {!! Form::label('location','Location* :') !!}
-        {!! Form::text('location',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
-         {!! Form::label('start_date','Start date* :') !!}
-        {!! Form::text('start_date',null,array('class'=>'form-control input-circle start_date','required'=>'','maxlength:256'))!!}
-         {!! Form::label('end_date','End date* :') !!}
-        {!! Form::text('end_date',null,array('class'=>'form-control input-circle end_date','required'=>'','maxlength:256'))!!}
-         {!! Form::label('organization_email','Email to recieve applications* :') !!}
-        {!! Form::text('organization_email',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
-          {!! Form::label('additional_link','Additional link:') !!}
-        {!! Form::text('additional_link',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
-       <!--- {!! Form::label('slug','Slug:') !!}
-         {!! Form::text('slug',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
-        {!! Form::label('tags','Tags:')!!}
-        <select class="form-control select2-multi input-circle" name="tags[]" multiple="multiple">
-@foreach($tags as $tag)
-        <option value='{!! $tag->id!!}'>{!!$tag->name!!}</option>
-    @endforeach
-</select>
-       
-        {!! Form::label('category','Category')!!}
- <select class="form-control input-circle" name="category_id">
-    @foreach($categories as $category)
-        <option value='{!! $category->id!!}'>{!!$category->name!!}</option>
-    @endforeach
-</select> -->
-       {!! Form::label('main_image',"Upload main image* :") !!}
+        {!! Form::open(['route' => 'posts.store','files'=>true]) !!}
+        {!! Form::label('title','Тема на проекта* :') !!}
+        {!! Form::text('title',null,array('class'=>'form-control input-circle'))!!}
+        {!! Form::label('theme','По коя програма е проекта? :') !!}
+        {!! Form::text('theme',null,array('class'=>'form-control input-circle'))!!}
+        {{ Form::label('country_id', 'Страна, в която ще се проведе проекта:') }}
+        <select class="form-control input-circle" name="country_id">
+          @foreach($countries as $country)
+            <option value='{{ $country->id }}'>{{ $country->name }}</option>
+          @endforeach
+
+        </select>
+         {!! Form::label('location','Градът, в който ще се проведе проекта* :') !!}
+        {!! Form::text('location',null,array('class'=>'form-control input-circle'))!!}
+         {!! Form::label('start_date','Начална дата* :') !!}
+        {!! Form::text('start_date',null,array('class'=>'form-control input-circle start_date'))!!}
+         {!! Form::label('end_date','Крайна дата* :') !!}
+        {!! Form::text('end_date',null,array('class'=>'form-control input-circle end_date'))!!}
+         {!! Form::label('body',"Информация за проекта* :") !!}
+          {!! Form::textarea('body',null,array('class'=>'form-control input-circle')) !!}
+             {!! Form::label('criteria',"Критерии за участие в проекта* :") !!}
+            {!! Form::textarea('criteria',null,array('class'=>'form-control input-circle')) !!}
+               {!! Form::label('fees',"Какво е покрито в проекта?* (пр. пътни разходи, ношувки...)  :") !!}
+            {!! Form::textarea('fees',null,array('class'=>'form-control input-circle', 'placeholder' => 'Пътни разходки, храна, нощувки')) !!}
+        
+          {!! Form::label('way_of_applying','Начин на кандидатсване*:') !!}
+        {!! Form::textarea('way_of_applying',null,array('class'=>'form-control input-circle'))!!}
+   
+       {!! Form::label('main_image',"Основна снимка на проекта* :") !!}
            {!! Form::file('main_image') !!}
-        {!! Form::label('featured_images',"Upload Featured Images* :") !!}
+        {!! Form::label('featured_images',"Допълнителни снимки на проекта (може да изберете повече от 1)* :") !!}
        {!! Form::file('featured_images[]', array('multiple'=>true)) !!}
-         {!! Form::label('upload_file',"Upload PDF:") !!}
-        {!! Form::file('upload_file') !!}
-        {!! Form::label('body',"Post Body* :") !!}
-        {!! Form::textarea('body',null,array('class'=>'form-control input-circle')) !!}
-        {!! Form::submit('Create Post',array('class'=>'btn btn-circle btn-outline btn-block blue margin'))!!}
+      
+        
+        {!! Form::submit('Добави проекта',array('class'=>'btn btn-circle btn-outline btn-block blue margin'))!!}
         {!! Form::close() !!}
     </div>
 </div>

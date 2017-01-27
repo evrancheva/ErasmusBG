@@ -37,6 +37,17 @@
     h = u.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
 })(window,document);
 
+
+</script>
 <script src="//load.sumome.com/" data-sumo-site-id="3b2ca00b11fb22517d9dfd81125ddd44e3458fe4c0fa5d3b77315a4498dcba7b" async="async"></script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=200052110463735";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+$(".fb-comments").attr("data-href", window.location.href);
 </script>
 </head>

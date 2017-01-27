@@ -37,15 +37,16 @@ Route::get('trips',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
 Route::get('/',['uses'=>'PagesController@getIndex','as'=>'index']);
 Route::get('/contact','PagesController@getContact');
 Route::post('/contact','PagesController@postContact');
+Route::get('/terms','PagesController@getTerms');
 Route::get('/about','PagesController@getAbout');
 Route::resource('posts','PostController');
 Route::post('/search',['uses'=>'PostController@searchPosts','as'=>'posts.search']);
 Route::get('/posts/results',['uses'=>'PostController@getResults','as'=>'posts.results']);
 //Route::resource('аccount','UserController',['except'=>['create','store']]);
 Route::resource('account','AccountController');
+Route::get('/organizations',['uses'=>'PagesController@getOrganizations','as'=>'organizations']);
 
-
-Route::post('posts/{id}/deleteImage/{image_id}', 'PostController@destroyImage');
+Route::post('/deleteImage/{image_id}', 'PostController@destroyImage');
 Route::post('posts/{id}/deletePdf/{pdf_id}', 'PostController@destroyPdf');
 #Route::post('posts/deleteImage/{id}',['as'=>'posts.destroyImage','uses'=>'PostController@destroyImage']);
 Route::post('/account/change_password',['uses'=>'AccountController@changePassword','as'=>'changePassword']);
@@ -70,3 +71,6 @@ Route::get('/admin/users/{id}',['as'=>'admin.users.show','uses'=>'AdminControlle
 Route::get('/admin/user/{id}/edit',['as'=>'admin.user.edit','uses'=>'AdminController@showEditUserForm','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/user/{id}/edit',['as'=>'admin.user.update','uses'=>'AdminController@updateUser','middleware'=>'roles','roles'=>'Admin']);
 Route::delete('/admin/user/{id}',['as'=>'admin.user.delete','uses'=>'AdminController@deleteUser','middleware'=>'roles','roles'=>'Admin']);
+
+//banner management
+Route::get('/admin/banners_management',['as'=>'admin.banners_management','uses'=>'BannerController@getBanners','middleware'=>'roles','roles'=>'Admin']);

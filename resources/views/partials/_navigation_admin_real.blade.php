@@ -109,6 +109,13 @@
                         <span class="arrow"></span>
                     </a>
                 </li>
+                <li class="{{Request::is('admin/banners_management') ? "active": ""}} nav-item start ">
+                    <a  href="{!! route('admin.banners_management')!!}" class=" nav-link nav-toggle" >
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <span class="title">Banner Management</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
                    <li class="nav-item start">
                     <a href="{!! route('logout')!!}" class="nav-link nav-toggle">
                         <i class="fa fa-times" aria-hidden="true"></i>

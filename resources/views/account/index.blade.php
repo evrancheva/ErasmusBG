@@ -41,13 +41,13 @@
                                                 </div>
                                                 <ul class="nav nav-tabs">
                                                     <li class="active">
-                                                        <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
+                                                        <a href="#tab_1_1" data-toggle="tab">Информация за организацията</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
+                                                        <a href="#tab_1_2" data-toggle="tab">Промени лого</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#tab_1_3" data-toggle="tab">Change Password</a>
+                                                        <a href="#tab_1_3" data-toggle="tab">Промени парола</a>
                                                     </li>
 
                                                 </ul>
@@ -56,31 +56,39 @@
                                                 <div class="tab-content">
                                                     <!-- PERSONAL INFO TAB -->
                                                     <div class="tab-pane active" id="tab_1_1">
+                                                         <div class="col-md-6 col-md-offset-3">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         {!! Form::model($user, ['route' => ['account.update', Auth::user()->id], 'method' => 'PUT', 'files' => true]) !!}
 
-                                                        {!! Form::label('name', 'Name of the organization:') !!}
+                                                        {!! Form::label('name', 'Име на организацията*:') !!}
                                                         {!! Form::text('name', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('email', 'Email of the organization:') !!}
+                                                        {!! Form::label('email', 'Email:') !!}
                                                         {!! Form::text('email', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('phone', 'Phone of the organization:') !!}
-                                                        {!! Form::text('phone', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('address', 'Address of the organization:') !!}
-                                                        {!! Form::text('address', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('site', 'Site of the organization:') !!}
+                                                        {!! Form::label('description', 'Описание на организацията*:') !!}
+                                                        {!! Form::textarea('description', null, ['class' => 'form-control input-circle','placeholder'=>'Основна информация, цели, мисия,визия, извършени дейности']) !!}
+                                                        {!! Form::label('president', 'Име на настоящия президент на организацията:') !!}
+                                                        {!! Form::text('email', null, ["class" => 'form-control input-lg input-circle']) !!}
+                                                        {!! Form::label('site', 'Сайт (в случай, че няма - Facebook страница)*:') !!}
                                                         {!! Form::text('site', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('description', 'Description of the organization:') !!}
-                                                        {!! Form::textarea('description', null, ['class' => 'form-control input-circle']) !!}
+                                                        {!! Form::label('phone', 'Телефон за връзка*:') !!}
+                                                        {!! Form::text('phone', null, ["class" => 'form-control input-lg input-circle']) !!}
+                                                        {!! Form::label('address', 'Адрес на организацията:') !!}
+                                                        {!! Form::text('address', null, ["class" => 'form-control input-lg input-circle']) !!}
+                                                        {!! Form::label('description', 'Допълнителна информация*:') !!}
+                                                        {!! Form::textarea('description', null, ['class' => 'form-control input-circle','placeholder'=>'В случай, че искате да промотирате Ваши доброволчески проекти или да споделите нещо друго с хората, които ще кандидатстват по Ваши проекти,моля , напишете тук!']) !!}
+                                                        
+                                                        
                                                         {!! Form::submit('Save Changes', ['class' => 'btn btn-circle btn-outline blue btn-block margin']) !!}
                                                         {!! Form::close() !!}
-
+                                                        </div>
                                                     </div>
                                                     <!-- END PERSONAL INFO TAB -->
                                                     <!-- CHANGE AVATAR TAB -->
                                                     <div class="tab-pane" id="tab_1_2">
+                                                         <div class="col-md-3 col-md-offset-4">
                                                         @if(!empty($user->logo))
                                                         <div >
-                                                            <h1>Current Image</h1>
+                                                            <h1>Настоящо лого</h1>
                                                             <img class="logo" src="{{asset("/images/")}}/{!! $user->logo !!}" style="width:250px;height:250px;">
                                                         </div>
                                                         @endif
@@ -95,21 +103,23 @@
                                                         {!! Form::submit('Save Changes', ['class' => 'btn btn-success btn-block margin']) !!}
                                                         {!! Form::close() !!}
                                                     </div>
+                                                    </div>
                                                     <!-- END CHANGE AVATAR TAB -->
                                                     <!-- CHANGE PASSWORD TAB -->
                                                     <div class="tab-pane" id="tab_1_3">
+                                                        <div class="col-md-6 col-md-offset-3">
                                                         {!! Form::open(['route' => 'changePassword']) !!}
 
-                                                        {!! Form::label('current_password', 'Current password:') !!}
+                                                        {!! Form::label('current_password', 'Настояща парола:') !!}
                                                         {!! Form::password('current_password',["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('new_password', 'New password:') !!}
+                                                        {!! Form::label('new_password', 'Нова парола:') !!}
                                                         {!! Form::password('new_password', ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('retype_password', 'Retype password:') !!}
+                                                        {!! Form::label('retype_password', 'Потвърдете новата парола:') !!}
                                                         {!! Form::password('retype_password', ["class" => 'form-control input-lg input-circle']) !!}
 
                                                         {!! Form::submit('Save Changes', ['class' => 'btn btn-circle btn-outline blue btn-block margin']) !!}
                                                         {!! Form::close() !!}
-
+                                                        </div>
                                                     </div>
                                                     <!-- END CHANGE PASSWORD TAB -->
                                                     <!-- PRIVACY SETTINGS TAB -->

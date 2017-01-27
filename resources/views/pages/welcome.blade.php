@@ -58,7 +58,7 @@
                            <strong>{!! $post->title !!}</strong>
                            <div class="info">
                               <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                              {!! $post->location !!} 
+                              {!! $post->location !!}, {!! $post->country->name!!}
                               <i class="fa fa-university" aria-hidden="true"></i>
                               {!! $post->user->name !!}
                               <span class="red">
@@ -70,7 +70,7 @@
                         <br>
                         <div class="descr">
                            <div class="text">
-                              {!! $post->body !!}
+                             {!! substr($post->body, 0, 700) !!}{!! strlen($post->body) > 700 ? '...' : "" !!}
                            </div>
                            <div class="line"></div>
                            <span class="read-more"> Read more </span>
@@ -95,7 +95,7 @@
       </div>
    </div>
 </div>
->>>>>>> 25c0cc385c58cd71c1e5d7be2c41eb42f82a8f9c
+
 </div>
 @if(!Auth::check())
 <div class="container">
@@ -110,7 +110,7 @@
                      <div class="register">
                         <div class="layer">
                   <a class="" href="{!! route('register') !!}">
-                  Регистрирай своята организация
+                  Кандидатсвай с своята организация, за да станеш част от нас.
                   <i class="fa fa-user-plus" aria-hidden="true"></i>
                   </a>
                   </div>
@@ -123,7 +123,7 @@
                      <div class="register">
                         <div class="layer2">
                   <a class="" href="{!! route('login') !!}">
-                  Влез в своя акаунт
+                  Влез в своя акаунт.
                   <i class="fa fa-sign-in" aria-hidden="true"></i>
                   </a>
                   </div>

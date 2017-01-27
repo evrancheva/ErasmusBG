@@ -43,3 +43,24 @@ $(document).ready(function() {
     });
 
 });
+$(document).ready(function() {
+
+    $("#owl").owlCarousel({
+
+        autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+        items : 3,
+        itemsDesktop : [1199,3],
+        itemsDesktopSmall : [979,3],
+
+        navigation: true,
+        navigationText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>","<i class='fa fa-angle-right' aria-hidden='true'></i>"],
+        pagination: false
+
+    });
+
+});
+
+function ChangePicture(bigPictureSrc){
+    $('.main_image_trip').attr('src',bigPictureSrc);
+}

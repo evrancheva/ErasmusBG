@@ -5,30 +5,32 @@
 
     <div class="row">
     <div class="col-md-12">
-    <span class="titleOfarticle">Всички проекти</span>
+    <span class="titleOfarticle">Кандидатсвай, за да станеш част от нас</span>
     <div class="row">
         <div class="col-md-6 col-md-offset-3 form2 margin">
-            Please fill in the required fields * 
-            {!! Form::open() !!}
-            {!! Form::label('name','Name* :') !!}
+           <span class="red"> Моля попълнете всички задължителни полета * </span>
+            {!! Form::open(['files'=>true]) !!}
+            {!! Form::label('name','Име на Вашата организация* :') !!}
             {!! Form::text('name',null,['class'=>'form-control']) !!}
-            {!! Form::label('username','Username* :') !!}
-            {!! Form::text('username',null,['class'=>'form-control']) !!}
-            {!! Form::label('email','Email* :') !!}
+            
+            {!! Form::label('email','Email на организацията (на него ще се пращат въпроси и кандидатури)* :') !!}
             {!! Form::email('email',null,['class'=>'form-control']) !!}
-            {!! Form::label('password','Password* :') !!}
+            {!! Form::label('password','Парола* :') !!}
             {!! Form::password('password',['class'=>'form-control']) !!}
-            {!! Form::label('password_confirmation','Confirm password* :') !!}
+            {!! Form::label('password_confirmation','Потвърди паролата* :') !!}
             {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
-            {!! Form::label('description','Description for your organization:') !!}
-            {!! Form::text('description',null,['class'=>'form-control']) !!}
-             {!! Form::label('site','Site of your organization:') !!}
-            {!! Form::text('site',null,['class'=>'form-control']) !!}
-              {!! Form::label('phone','Phone:') !!}
+            {!! Form::label('description','Описание на Вашата организация*:') !!}
+            {!! Form::textarea('site',null,['class'=>'form-control','placeholder' => 'Основна информация, цели, мисия, визия, извършени дейности']) !!}
+           {!! Form::label('president','Име на настоящия президент на Вашата организация :') !!}
+            {!! Form::text('president',null,['class'=>'form-control']) !!}
+             {!! Form::label('site','Сайт (в случай, че няма, Facebook страница)*:') !!}
+             {!! Form::text('description',null,['class'=>'form-control']) !!}
+              {!! Form::label('phone','Телефон за връзка*:') !!}
+
             {!! Form::text('phone',null,['class'=>'form-control']) !!}
-              {!! Form::label('address','Address of your organization:') !!}
+              {!! Form::label('address','Адрес*:') !!}
             {!! Form::text('address',null,['class'=>'form-control']) !!}
-              {!! Form::label('motivation','Motivation to participate* :') !!}
+              {!! Form::label('motivation','Мотивация за участие в платформата ErasmusBG.com* :') !!}
             {!! Form::textarea('motivation',null,['class'=>'form-control']) !!}
             {!! Form::label('logo','Logo of your organization* :') !!}
             {!! Form::file('logo') !!}

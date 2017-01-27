@@ -6,50 +6,50 @@
       <h1>{!!$post->title!!}</h1>
       <p class="lead">{!! $post->body !!}</p>
       <hr>
+      <h1>Критерии за участие</h1>
+      <p class="lead">{!! $post->criteria !!}</p>
+      <hr>
+       <h1>Разходи, които проекта покрива</h1>
+      <p class="lead">{!! $post->fees !!}</p>
+      <hr>
+       <h1>Начин на кандидатсване</h1>
+      <p class="lead">{!! $post->way_of_applying !!}</p>
+      <hr>
+      <hr>
    </div>
    <div class="col-md-4 col-xs-12">
       <div class="well">
 
-         <h2> Information </h2>
+         <h2> Допълнителна информация </h2>
          <dl class="dl-horizontal">
             <label> URL: </label>
-            <p><a href="{!! route('blog.single',$post->slug) !!}">{{url('blog/'.$post->slug)}}</a></p>
+            <p><a href="{!! route('blog.single',$post->slug) !!}">{{url('trips/'.$post->slug)}}</a></p>
          </dl>
          <dl class="dl-horizontal">
-            <label> Location: </label>
-            <p>{!! $post->location !!}</p>
+            <label> Локация: </label>
+            <p>{!! $post->location !!}, {!! $post->country->name !!}</p>
          </dl>
          <dl class="dl-horizontal">
-            <label> Start date: </label>
+            <label> Начална дата: </label>
             <p>{!! $post->start_date !!}</p>
          </dl>
          <dl class="dl-horizontal">
-            <label> End date: </label>
+            <label> Крайна дата: </label>
             <p>{!! $post->end_date !!}</p>
          </dl>
-         <dl class="dl-horizontal">
-            <label> The email in which you will receive applications: </label>
-            <p>{!! $post->organization_email !!}</p>
+        <dl class="dl-horizontal">
+            <label> Проекта е по програма:  </label>
+            <p>{!! $post->theme !!}</p>
          </dl>
          <dl class="dl-horizontal">
-            <label> Additional link: </label>
-            <p>{!! $post->additional_link !!}</p>
-         </dl>
-         <dl class="dl-horizontal">
-            <label> Created At: </label>
+            <label> Добавено на: </label>
             <p>{{date('M j, Y H:i',strtotime($post->created_at))}}</p>
          </dl>
          <dl class="dl-horizontal">
-            <label> Last Updated: </label>
+            <label> Редактирано на: </label>
             <p>{{date('M j, Y H:i',strtotime($post->updated_at))}}</p>
          </dl>
-          @if(!empty($post->pdf))
-           <dl class="dl-horizontal">
-              <label> PDF file</label> 
-               <div><a href="{{asset("/pdf/")}}/{!! $post->pdf !!}" download> {!! $post->title !!} - pdf file </a></div>
-           </dl>
-          @endif         
-         <hr>
+        
          <div class="row">
             <div class="col-md-6">
                {!! Html::linkRoute('posts.edit','Edit',array($post->id),array('class'=>'btn btn-circle btn-outline btn-block blue')) !!}
@@ -67,25 +67,29 @@
  </div>
 
   
-   @if(!$images->isEmpty())
+   
 
    <div class="col-md-12">
+    <div class="row">
       <div class="col-md-2">
    @if(!empty($post->image)) 
-<h1> Main image </h1>
+<h2> Основна снимка </h2>
          <img  src="{{asset("/images/")}}/{!! $post->image !!}" style="width:250;height:250px;">
-@endif
+
       </div>
+      @if(!$images->isEmpty())
       <div class="col-md-10">
-      <h1 class="title">Photos</h1>
+        
+          <h2 class="title">Допълнителни снимки</h2>
 
-      @foreach($images as $image)
+          @foreach($images as $image)
 
-      <div class="col-md-2 col-xs-12 margin-top-bottom">
-        <img src="{{asset("/images/")}}/{!! $image->image_small !!}" style="width:250;height:250px;">
-     </div>
-      @endforeach
-   </div>
+          <div class="col-md-2 col-xs-12 margin-top-bottom">
+            <img src="{{asset("/images/")}}/{!! $image->image_small !!}" style="width:250;height:250px;">
+         </div>
+          @endforeach
+       </div>
+     @endif
  </div>
 </div>
    @endif

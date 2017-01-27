@@ -16,6 +16,7 @@ use App\PostImage;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Intervention\Image\Facades\Image;
+use App\Country;
 class PostController extends Controller
 {
     public function __construct()
@@ -43,7 +44,8 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         $categories = Category::all();
-        return view("posts.create")->withCategories($categories)->withTags($tags);
+         $countries = Country::all();
+        return view("posts.create")->withCategories($categories)->withTags($tags)->withCountries($countries);
     }
 
     /**
@@ -62,8 +64,11 @@ class PostController extends Controller
             'location' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'organization_email' => 'required', 
-            'main_image'=>'required'          
+            'criteria' => 'required', 
+            'main_image'=>'required',
+            'fees'=>'required',
+            'way_of_applying'=>'required',
+            'country_id'=>'required'         
         ));
 
     
@@ -73,26 +78,26 @@ class PostController extends Controller
         $post->location = $request->location;
         $post->start_date = $request->start_date;
         $post->end_date = $request->end_date;
-        $post->organization_email = $request->organization_email;
-        $post->additional_link = $request->additional_link;
+        $post->theme = $request->theme;
+        $post->criteria = Purifier::clean($request->criteria);
+        $post->fees = Purifier::clean($request->fees);
         $post->body = Purifier::clean($request->body);
+        $post->way_of_applying = Purifier::clean($request->way_of_applying);
+       $post->country_id = $request->country_id;
           /*   $post->category_id = $request->category_id;*/
         $post->user_id = Auth::user()->id;
         if($request->hasFile('main_image')){
-                 $file = $request->file('main_image');
-                $destinationPath = public_path('images/');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                Image::make($file)->crop(400,400)->save($destinationPath . $filename);
-                $post->image = $filename;
+              $image = $request->file('main_image');
+               $filename = time() . '.' . $image->getClientOriginalExtension();
+               $location = public_path('images/' . $filename);
+              Image::make($image)->crop(400, 400)->save($location);
+     
+              $post->image = $filename;
+               
+           
         }
 
-        if($request->hasFile('upload_file')){
-            $file = $request->file('upload_file');
-            $filename = time() . '.pdf';
-            $location = public_path('pdf/');
-            Input::file('upload_file')->move($location,$filename);
-            $post->pdf = $filename;
-        }
+    
         $post->save();
         if($request->hasFile('featured_images')){
 
@@ -160,10 +165,18 @@ class PostController extends Controller
         foreach($categories as $category){
             $cats[$category->id]=$category->name;
         }
+
+        $countries = Country::all();
+
+        $countriess = array();
+        foreach($countries as $country){
+            $countriess[$country->id]=$country->name;
+        }
+
         $post = Post::where('id','=',$id)->where('user_id','=',Auth::user()->id)->get();
         if(!$post->isEmpty()){
            $post = Post::find($id);
-            return view('posts.edit')->withTags($tagss)->withPost($post)->withCategories($cats)->withImages($images);;
+            return view('posts.edit')->withTags($tagss)->withPost($post)->withCategories($cats)->withImages($images)->withCountries($countriess);
         }
         else{
 
@@ -186,39 +199,42 @@ class PostController extends Controller
        
             $this->validate($request,array(
                 'title' => 'required|max:255',
+                'country_id' => 'required',
                 'body' => 'required',
-                'body' => 'required',
-                'featured_image' => 'image'
+                'featured_image' => 'image',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'criteria' => 'required', 
+                
+                'fees'=>'required',
+                'way_of_applying'=>'required',
+                'location' => 'required',
+               
             ));
         
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->location = $request->location;
         $post->start_date = $request->start_date;
-         $post->slug =  cyr2url($post->title);
+        $post->slug =  cyr2url($post->title);
         $post->end_date = $request->end_date;
-        $post->organization_email = $request->organization_email;
-        $post->additional_link = $request->additional_link;        $post->body = Purifier::clean($request->input('body'));
+        $post->theme = $request->theme;
+        $post->criteria = Purifier::clean($request->criteria);
+        $post->fees = Purifier::clean($request->fees);
+        $post->body = Purifier::clean($request->body);
+        $post->way_of_applying = Purifier::clean($request->way_of_applying);    
+        $post->country_id = $request->country_id;
          if($request->hasFile('main_image')){
+              
+
+
                  $file = $request->file('main_image');
                 $destinationPath = public_path('images/');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
                 Image::make($file)->crop(400,400)->save($destinationPath . $filename);
                 Storage::delete($post->image); 
-                $post->image = $filename;
-
-              
-        }
-       /* if($request->featured_image){
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' .$filename);
-            Image::make($image)->resize(800,400)->save($location);
-             $oldFileName = $post->image;
-             $post->image = $filename;
-             Storage::delete($oldFileName);
-
-    }  */
+                $post->image = $filename;              
+         }
      if($request->hasFile('featured_images')){
 
             $files = Input::file('featured_images');  
@@ -236,24 +252,9 @@ class PostController extends Controller
               
               }
             }
-  if($request->hasFile('upload_file')){
-            $file = $request->file('upload_file');
-            $filename = time() . '.pdf';
-            $location = public_path('pdf/');
-            Input::file('upload_file')->move($location,$filename);
-             $oldFileName = $post->pdf;
-            Storage::delete($oldFileName);
-            $post->pdf = $filename;
-        }
  
         $post->save();
-       /* if(isset($request->tags)){
-             $post->tags()->sync($request->tags);
-        }
-        else{
-             $post->tags()->sync(array());
-        }*/
-      
+     
         Session::flash('success','The blog post was successfully edited!');
         return redirect()->route('posts.show',$post->id);
     }
@@ -280,7 +281,7 @@ class PostController extends Controller
         Storage::delete($image->name);
          $image->delete();
        
-       return 'success';
+        return response()->json(['return' => 'some hi']);
     }
      public function destroyPdf($id){
          $id = $_POST['id'];

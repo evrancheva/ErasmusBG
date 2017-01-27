@@ -21,3 +21,4 @@ function cyr2url($string) {
         );
         return strtolower(strtr($string,$string_replace));
     }
+    
