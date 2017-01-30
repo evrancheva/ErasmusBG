@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '| All users')
+@section('title', '| All banners')
 @section('content')
     <!-- BEGIN PAGE HEADER-->
     <!-- BEGIN THEME PANEL -->
@@ -17,7 +17,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class=" icon-layers font-green"></i>
-                        <span class="caption-subject font-green sbold uppercase">Всички потребители</span>
+                        <span class="caption-subject font-green sbold uppercase">Всички банери</span>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -26,7 +26,7 @@
                             <div class="portlet box red">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-cogs"></i>Всички потребители
+                                        <i class="fa fa-cogs"></i>Всички банери
                                     </div>
                                     <div class="tools">
                                         <a href="javascript:;" class="collapse"> </a>
@@ -39,30 +39,31 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Image</th>
                                                 <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
+                                                <th>Image</th>
+                                                <th>Link </th>
+                                                <th>Width</th>
+                                                <th>Height</th>
+                                               <th>Active</th>
                                                
 
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($users as $user)
+                                            @foreach($banners as $banner)
                                                 <tr>
-                                                    <td>{!!$user->id!!}</td>
-                                                    <td> @if(!empty($user->logo))
-                                                        <img src="{{asset("/images/")}}/{!!$user->logo!!}" class="minilogo img-circle">@else
+                                                    <td>{!!$banner->id!!}</td>
+                                                    <td>{!!$banner->name!!} </td>
+                                                    <td> @if(!empty($banner->image))
+                                                       <img src="{{asset("/images/")}}/{!!$banner->image!!}" class="thumb ">@else
                                                         <h5>No image </h5> @endif</td>
-                                                    <td>{!!$user->name!!} </td>
-                                                    <td>{{$user->email}}</td>
-                                                    
-                                                    <td>@if(!empty($user->phone))
-                                                        {{$user->phone}} @else <h5>No phone </h5> @endif</td>
-                                                   <td>
+                                                        <td>{!!$banner->link!!} </td>
+                                                    <td>{!!$banner->width!!} </td>
+                                                    <td>{{$banner->height}}</td>
+                                                    <td>@if($banner->active =='on') Active @else Not active @endif</td>
 
-                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a></td>
+                                                 <td> <a href="{{route("admin.banners.edit",$banner->id)}}" class="btn btn-circle btn-outline blue ">Edit</a></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -71,9 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            {!!  $users->render()!!}
-                        </div>
+                       
                     </div>
                 </div>
             </div>

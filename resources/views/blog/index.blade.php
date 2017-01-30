@@ -57,12 +57,18 @@
     <div class="fb2 margin-top-bottom">
                     <div class="fb-page" data-href="https://www.facebook.com/Erasmusbgcom-325695476033/?fref=ts" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
                 </div>
+               
+           
+             @if(!empty($banner[0]))
                 <div class="banner margin-top-bottom">
-                        <img src="{{asset("/images/banner300.gif")}}" class=" img-responsive">
+                        <a @if(!empty($banner[0]->link)) href="{!!$banner[0]->link!!}" @endif><img src="{{asset("/images")}}/{!! $banner[0]->image!!}" class=" img-responsive"></a>
                 </div>
-                 <div class="banner margin-top-bottom">
-                        <img src="{{asset("/images/banner300.gif")}}" class=" img-responsive">
+                @endif
+                    @if(!empty($banner2[0]))
+                <div class="banner margin-top-bottom">
+                        <a @if(!empty($banner2[0]->link)) href="{!!$banner2[0]->link!!}" @endif><img src="{{asset("/images")}}/{!! $banner2[0]->image!!}" class=" img-responsive"></a>
                 </div>
+                @endif
 
    </div>
 </div>

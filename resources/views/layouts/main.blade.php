@@ -4,7 +4,7 @@
 @yield('stylesheets')
 <body>
 @include('partials._navigation')
-
+ {{ csrf_field() }}
     @include('partials._messages')
     @yield('content')
     @include('partials._footer')

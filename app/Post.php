@@ -5,8 +5,12 @@ use App\Category;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Country;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
+	use SoftDeletes;
+	 protected $dates = ['deleted_at'];
+
 	   public function category(){
 		return $this->belongsTo('App\Category');
 	}

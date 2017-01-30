@@ -5,7 +5,6 @@
 @section('content')
 <div class="container">
    <span class="titleOfarticle">ТОП ЕРАЗЪМ ПРОЕКТИ</span>
-   
    <div class="row">
       <div class="col-md-12">
          <div id="owl-demo">
@@ -23,7 +22,7 @@
                            </span>
                         </div>
                      </div>
-                     <img src="{{asset("/images/")}}/{!! $post->image !!}" class="mainImageCategory img-responsive">
+                     <img src="{{asset("/images/")}}/{!! $post->image !!}" alt='erasmus-project-{!! cyr2url($post->title) !!}'class="mainImageCategory img-responsive">
                   </div>
                </div>
             </a>
@@ -50,7 +49,7 @@
                                  <div>{!! $post->title !!}</div>
                               </div>
                            </div>
-                           <img src="{{asset("/images/")}}/{!! $post->image !!}" class="mainImageCategory img-responsive">
+                           <img src="{{asset("/images/")}}/{!! $post->image !!}" alt='erasmus-project-{!! cyr2url($post->title) !!}' class="mainImageCategory img-responsive">
                         </div>
                      </div>
                      <div class="col-md-8">
@@ -70,7 +69,7 @@
                         <br>
                         <div class="descr">
                            <div class="text">
-                             {!! substr($post->body, 0, 700) !!}{!! strlen($post->body) > 700 ? '...' : "" !!}
+                              {!! substr($post->body, 0, 700) !!}{!! strlen($post->body) > 700 ? '...' : "" !!}
                            </div>
                            <div class="line"></div>
                            <span class="read-more"> Read more </span>
@@ -89,13 +88,13 @@
                   <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote>
                </div>
             </div>
-
-            <div class="banner-big"><a ><img src="{{asset("/images/300x600.jpg")}}" class=" img-responsive"></a></div>
+            @if(!empty($banner[0]))
+            <div class="banner-big"><a @if(!empty($banner[0]->link)) href="{!!$banner[0]->link!!}" @endif><img alt='banner' src="{{asset("/images")}}/{!! $banner[0]->image!!}" class=" img-responsive"></a></div>
+            @endif
          </div>
       </div>
    </div>
 </div>
-
 </div>
 @if(!Auth::check())
 <div class="container">
@@ -109,8 +108,8 @@
                   <a class="" href="{!! route('register') !!}">
                      <div class="register">
                         <div class="layer">
-                  <a class="" href="{!! route('register') !!}">
-                  Кандидатсвай с своята организация, за да станеш част от нас.
+                  <a class="" href="{!! route('register') !!}" style="font-size:33px;top: 103px;">
+                  Кандидатсвай със своята организация, за да станеш част от нас.
                   <i class="fa fa-user-plus" aria-hidden="true"></i>
                   </a>
                   </div>
@@ -129,37 +128,44 @@
                   </div>
                   </a>
                   </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
-</div>
-@else
-<div class="container">
-   <span class="titleOfarticle"></span>
-   <div class="row">
-      <div class=" col-md-12">
-         <img src="{{asset("/images/thank.png")}}" class="img-responsive margin" >
-      </div>
-   </div>
-</div>
-@endif
-<div class="container">
-   <span class="titleOfarticle">Организации</span>
-   <div class="row">
-      <div class="col-md-12">
-         <div class="col-md-offset-2"
-         <div id="owl-demo3">
-            @foreach($users as $user)
-            <div class="item">
-               <img src="{{asset("/images/")}}/{!! $user->logo !!}" class="img-responsive " style="width:50px; height:50px;">
-               <p>{!!$user->name!!}</p>
-            </div>
-            @endforeach
+   @else
+   <div class="container">
+      <span class="titleOfarticle"></span>
+      <div class="row">
+         <div class=" col-md-12">
+            <img src="{{asset("/images/thank.png")}}" class="img-responsive margin" >
          </div>
       </div>
    </div>
-</div>
+   @endif
+   <div class="container">
+      <span class="titleOfarticle">Организации</span>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="col-md-offset-2"
+            <div id="owl-demo3">
+               @foreach($users as $user)
+               <div class="item">
+                  <img src="{{asset("/images/")}}/{!! $user->logo !!}" class="img-responsive " style="width:50px; height:50px;">
+                  <p>{!!$user->name!!}</p>
+               </div>
+               @endforeach
+            </div>
+         </div>
+         @if(!empty($wideBanner[0]))
+         <div class="col-md-offset-2 col-md-8 banner-large hidden-xs hidden-sm">
+            <a @if(!empty($wideBanner[0]->link )) href="{!!$wideBanner[0]->link !!}"  @endif>  
+            <img src="{{asset("/images/")}}/{!! $wideBanner[0]->image!!}" class="img-responsive " >
+            </a>
+         </div>
+         @endif
+      </div>
+   </div>
 </div>
 @endsection
 @section('scripts')

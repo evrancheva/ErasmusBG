@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\PostImage;
 use App\User;
+use App\Banner;
 
 class PagesController extends Controller{
     
     public function getIndex(){
         $users = User::where('confirmed','=','1')->get();
         $posts = Post::orderBy('created_at','desc')->limit(4)->get();
-        
-        return view('pages.welcome')->withPosts($posts)->withUsers($users);
+        $banner = Banner::where('id','=','1')->where('active','=','on')->get();
+       
+        $wideBanner = Banner::where('id','=','2')->where('active','=','on')->get();
+        return view('pages.welcome')->withPosts($posts)->withUsers($users)->withBanner($banner)->with('wideBanner',$wideBanner);
     }
     public function getAbout(){
         $posts = Post::orderBy('created_at','desc')->limit(4)->get();

@@ -74,3 +74,5 @@ Route::delete('/admin/user/{id}',['as'=>'admin.user.delete','uses'=>'AdminContro
 
 //banner management
 Route::get('/admin/banners_management',['as'=>'admin.banners_management','uses'=>'BannerController@getBanners','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/banner_management/{id}/edit',['as'=>'admin.banners.edit','uses'=>'BannerController@showEditBanner','middleware'=>'roles','roles'=>'Admin']);
+Route::put('/admin/banner_management/{id}/edit',['as'=>'admin.banners.update','uses'=>'BannerController@updateBanner','middleware'=>'roles','roles'=>'Admin']);

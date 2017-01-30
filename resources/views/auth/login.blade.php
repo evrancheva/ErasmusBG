@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="form2 margin-top-bottom">
-
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
             {!! Form::open() !!}
             {!! Form::label('email','Email:',array('class' => 'label')) !!}
             {!! Form::email('email',null,['class'=>'form-control margin-top-bottom']) !!}

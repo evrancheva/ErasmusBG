@@ -83,7 +83,7 @@ class PostController extends Controller
         $post->fees = Purifier::clean($request->fees);
         $post->body = Purifier::clean($request->body);
         $post->way_of_applying = Purifier::clean($request->way_of_applying);
-       $post->country_id = $request->country_id;
+          $post->country_id = $request->country_id;
           /*   $post->category_id = $request->category_id;*/
         $post->user_id = Auth::user()->id;
         if($request->hasFile('main_image')){
@@ -103,9 +103,9 @@ class PostController extends Controller
 
             $files = Input::file('featured_images');  
             foreach($files as $file) {
-
+             
                 $destinationPath = public_path('images/');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $filename =uniqid() . '.' . $file->getClientOriginalExtension();
                 Image::make($file)->crop(400,400)->save($destinationPath . $filename);
               
                 $postImage = new PostImage;
@@ -225,10 +225,7 @@ class PostController extends Controller
         $post->way_of_applying = Purifier::clean($request->way_of_applying);    
         $post->country_id = $request->country_id;
          if($request->hasFile('main_image')){
-              
-
-
-                 $file = $request->file('main_image');
+                $file = $request->file('main_image');
                 $destinationPath = public_path('images/');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
                 Image::make($file)->crop(400,400)->save($destinationPath . $filename);
@@ -241,7 +238,7 @@ class PostController extends Controller
             foreach($files as $file) {
 
                 $destinationPath = public_path('images\\');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
                 Image::make($file)->crop(400,400)->save($destinationPath . $filename);
                 $postImage = new PostImage;
                 $idOfImage = Post::where('title', $request->title)->first();
@@ -277,8 +274,8 @@ class PostController extends Controller
     public function destroyImage($id){
         $id = $_POST['id'];
        $image = PostImage::find($id);
-      
-        Storage::delete($image->name);
+       
+        Storage::delete($image->image_small);
          $image->delete();
        
         return response()->json(['return' => 'some hi']);

@@ -184,13 +184,13 @@
       text-align: center;
 }
 .register2{
-<<<<<<< HEAD
+
    box-shadow: -webkit-box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
 -moz-box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
 box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
-=======
+
    text-align: center;
->>>>>>> 25c0cc385c58cd71c1e5d7be2c41eb42f82a8f9c
+
     background: lightgrey;
     width: 400px;
     height:400px;
@@ -468,4 +468,7 @@ border: 3px  lightgrey solid;
     min-height: 265px;
     
     border-right: lightgrey solid 2px;
+}
+.banner-large{
+    margin-top:10px;
 }
