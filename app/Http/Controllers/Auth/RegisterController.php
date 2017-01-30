@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Role;
+use Session;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -52,7 +54,6 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'name' => 'required',
             'description' => 'required|min:6',
             'site' => 'required',
             'phone' => 'required',
@@ -70,10 +71,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
+         $image = $data['logo'];
+               $filename = time() . '.' . $image->getClientOriginalExtension();
+               $location = public_path('images/' . $filename);
+              Image::make($image)->resize(400, 400)->save($location);
+     
+             
+               
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'description'=> $data['description'],
+            'site'=> $data['site'],
+            'phone'=> $data['phone'],
+            'address'=> $data['address'],
+            'logo'=> $filename,
+            'motivation'=> $data['motivation'],
+            'president'=> $data['president'],
 
         ]);
         $user->roles()->attach(Role::where('name','User')->first());
