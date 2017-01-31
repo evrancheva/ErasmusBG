@@ -6,9 +6,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
 use App\Post;
+use App\Rating;
 
 class User extends Authenticatable
 {
+    public function votes()
+{
+    return $this->hasMany('App\Rating');
+}
     public function posts(){
         return $this->hasMany('App\Post');
 }
@@ -49,7 +54,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','president','logo','motivation','description','site','phone','address'
+        'name', 'email', 'password','president','logo','motivation','description','site','phone','address','slug'
     ];
 
     /**

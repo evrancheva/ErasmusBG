@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\PostImage;
 use App\User;
 use App\Banner;
+use App\Rating;
 
 class PagesController extends Controller{
     
@@ -24,8 +25,10 @@ class PagesController extends Controller{
         return view('pages.about')->withPosts($posts);
     }
     public function getOrganizations(){
+
         $organizations = User::where('confirmed','=','1')->orderBy('created_at','desc')->get();
-        return view('pages.organizations')->withOrganizations($organizations);
+       
+               return view('pages.organizations')->withOrganizations($organizations);
     }
     public function getContact(){
         return view('pages.contact');

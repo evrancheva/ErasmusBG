@@ -33,6 +33,8 @@ Route::resource('tags','TagController',['except'=>['create']]);
 #Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle','middleware'=>'roles','roles'=>'User']);
 Route::get('trips/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
 Route::get('trips',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
+Route::post('vote/',['as'=>'blog.rate','uses'=>'BlogController@rate']);
+
 
 Route::get('/',['uses'=>'PagesController@getIndex','as'=>'index']);
 Route::get('/contact','PagesController@getContact');

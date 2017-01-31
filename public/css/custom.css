@@ -432,7 +432,10 @@ border: 3px  lightgrey solid;
 .org{
         width: 100%;
        min-height: 180px;
-  box-shadow: 10px 10px 80px 11px rgba(156,150,156,0.8);
+ -webkit-box-shadow: 1px 9px 43px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 9px 43px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 9px 43px 0px rgba(0,0,0,0.75);
+;
     border: 3px  lightgrey solid;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -471,4 +474,15 @@ border: 3px  lightgrey solid;
 }
 .banner-large{
     margin-top:10px;
+}
+
+.normal-org{
+    margin-top:15px;
+}
+.move{
+   margin-left: 42%;
+}
+.logo-org2{
+    display: block;
+    margin: auto;
 }

@@ -19,6 +19,8 @@ class AddColumnsToUsers extends Migration
             $table->string('site')->nullable()->after('password');
             $table->text('description')->nullable()->after('password');
             $table->string('logo')->nullable()->after('password');
+            $table->string('slug')->nullable();
+            $table->text('additional_information')->nullable();
         });
     }
 

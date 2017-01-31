@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Banner;
+use App\Rating;
 
 class BlogController extends Controller
 {
@@ -25,5 +26,24 @@ class BlogController extends Controller
         $posts = Post::orderBy('id','desc')->paginate(6);
         return view('blog.index')->withPosts($posts)->withBanner($banner)->with('banner2',$banner2);;
 
+    }
+    public function rate(){
+        $ip = $_SERVER['REMOTE_ADDR'];
+         $user_id = $_POST['user_id'];
+            $vote = $_POST['vote'];
+        $ratingCollection = Rating::where('ip',$ip)->where('user_id',$user_id)->get();
+        $changeRating = Rating::find($ratingCollection[0]['id']);
+      
+        if(!empty($ratingCollection)){
+            $changeRating->vote = $vote;
+            $changeRating->save();
+        }else{
+             $rating = new Rating;
+            $rating->user_id = $user_id;
+            $rating->vote = $vote;
+            $rating->ip =$ip;
+            $rating->save();
+        }
+        return 'success';
     }
 }

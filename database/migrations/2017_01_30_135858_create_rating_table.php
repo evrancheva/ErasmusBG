@@ -16,7 +16,7 @@ class CreateRatingTable extends Migration
          Schema::create('ratings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('vote');
+            $table->double('vote');
             $table->string('ip');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

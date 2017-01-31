@@ -20,11 +20,11 @@
             {!! Form::label('password_confirmation','Потвърди паролата* :') !!}
             {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
             {!! Form::label('description','Описание на Вашата организация*:') !!}
-            {!! Form::textarea('site',null,['class'=>'form-control','placeholder' => 'Основна информация, цели, мисия, визия, извършени дейности']) !!}
+            {!! Form::textarea('description',null,['class'=>'form-control','placeholder' => 'Основна информация, цели, мисия, визия, извършени дейности']) !!}
            {!! Form::label('president','Име на настоящия президент на Вашата организация :') !!}
             {!! Form::text('president',null,['class'=>'form-control']) !!}
              {!! Form::label('site','Сайт (в случай, че няма, Facebook страница)*:') !!}
-             {!! Form::text('description',null,['class'=>'form-control']) !!}
+             {!! Form::text('site',null,['class'=>'form-control']) !!}
               {!! Form::label('phone','Телефон за връзка*:') !!}
 
             {!! Form::text('phone',null,['class'=>'form-control']) !!}

@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Storage;
 
 
 class AccountController extends Controller
@@ -101,7 +102,8 @@ class AccountController extends Controller
         $user->address = $request->address;
         $user->site = $request->site;
         $user->description = $request->description;
-
+        $user->additional_information = $request->additional_information;
+$request->description;
 
 
         $user->save();
@@ -158,8 +160,8 @@ class AccountController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' .$filename);
-            Image::make($image)->resize(200,200)->save($location);
-
+            Image::make($image)->resize(150,150)->save($location);
+            Storage::delete($user->logo);
             $user->logo = $filename;
             $user->save();
             Session::flash('success','The image was successfully uploaded!');

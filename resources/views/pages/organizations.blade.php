@@ -39,16 +39,17 @@
                 <div class="text-center ">
                  <p class="info-org-big title-org">  {!!$organization->name!!}</p>
                  <div class="rating text-center">
+                  @for ($i = 1; $i <= $organization->votes->avg('vote'); $i++)
                     <i class="fa fa-star yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star-o yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star-o yellow" aria-hidden="true"></i>
+                    @endfor
+                    @for ($i = 5 - $organization->votes->avg('vote') ; $i >=1 ; $i--)  
+                          <i class="fa fa-star-o yellow" aria-hidden="true"></i>
+                    @endfor
                   </div>
 
                 
                 </div>
-
+           
                <p  class="info-org"><i class="fa fa-map-marker orange" aria-hidden="true"></i>  Aдрес: {!!$organization->address!!}
                 <br>
                 <i class="fa fa-globe orange" aria-hidden="true"></i>  Сайт/FB page: <a href="{!!$organization->site!!}"> {!!$organization->site!!}</a>
@@ -60,7 +61,36 @@
                 
                 </p>
                 <div class=" read-more-org">
-                         <a class="read-more2" href="#">Прочети още </a>
+                  <button type="button" class="read-more2" data-toggle="modal" data-target="#myModal{!!$organization->id!!}">
+Прочети още
+</button>
+                        <div class="modal fade" id="myModal{!!$organization->id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center" id="myModalLabel">{!!$organization->name!!}</h2>
+      </div>
+      <div class="modal-body">
+          <div class="text-center">
+           <img src="{{asset("/images/")}}/{!! $organization->logo !!}" class="logo-org2 img-responsive">  
+         </div>
+          <h3><i class="fa fa-info-circle orange" aria-hidden="true"></i> Основна информация за организацията: </h3>
+          {!!$organization->description!!}
+          @if(!empty($organization->additional_information)) <h3><i class="fa fa-info-circle orange" aria-hidden="true"></i> Допълнителна информация за организацията: </h3>
+          {!!$organization->additional_information!!}
+
+           <div id="fb-root"></div>
+         <div class="fb-comments"  data-width="100%" data-numposts="5"></div>
+          @endif
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+     
+      </div>
+    </div>
+  </div>
+</div>
                 </div>
              
                </div>

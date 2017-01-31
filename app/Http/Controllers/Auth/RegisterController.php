@@ -75,7 +75,7 @@ class RegisterController extends Controller
          $image = $data['logo'];
                $filename = time() . '.' . $image->getClientOriginalExtension();
                $location = public_path('images/' . $filename);
-              Image::make($image)->resize(400, 400)->save($location);
+              Image::make($image)->crop(150, 150)->save($location);
      
              
                
@@ -91,6 +91,7 @@ class RegisterController extends Controller
             'logo'=> $filename,
             'motivation'=> $data['motivation'],
             'president'=> $data['president'],
+            'slug' => cyr2url($data['name']),
 
         ]);
         $user->roles()->attach(Role::where('name','User')->first());

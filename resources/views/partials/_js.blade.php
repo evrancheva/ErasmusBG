@@ -16,12 +16,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
 <script>
-$(function () {
- 
-  $("#rateYo").rateYo({
-    rating: 2,
-    fullStar: true
-  });
-});
+
 
 </script>

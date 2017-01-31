@@ -67,15 +67,16 @@
                                                         {!! Form::label('description', 'Описание на организацията*:') !!}
                                                         {!! Form::textarea('description', null, ['class' => 'form-control input-circle','placeholder'=>'Основна информация, цели, мисия,визия, извършени дейности']) !!}
                                                         {!! Form::label('president', 'Име на настоящия президент на организацията:') !!}
-                                                        {!! Form::text('email', null, ["class" => 'form-control input-lg input-circle']) !!}
+                                                        {!! Form::text('president', null, ["class" => 'form-control input-lg input-circle']) !!}
+
                                                         {!! Form::label('site', 'Сайт (в случай, че няма - Facebook страница)*:') !!}
                                                         {!! Form::text('site', null, ["class" => 'form-control input-lg input-circle']) !!}
                                                         {!! Form::label('phone', 'Телефон за връзка*:') !!}
                                                         {!! Form::text('phone', null, ["class" => 'form-control input-lg input-circle']) !!}
                                                         {!! Form::label('address', 'Адрес на организацията:') !!}
                                                         {!! Form::text('address', null, ["class" => 'form-control input-lg input-circle']) !!}
-                                                        {!! Form::label('description', 'Допълнителна информация*:') !!}
-                                                        {!! Form::textarea('description', null, ['class' => 'form-control input-circle','placeholder'=>'В случай, че искате да промотирате Ваши доброволчески проекти или да споделите нещо друго с хората, които ще кандидатстват по Ваши проекти,моля , напишете тук!']) !!}
+                                                        {!! Form::label('additional_info', 'Допълнителна информация*:') !!}
+                                                        {!! Form::textarea('additional_info', null, ['class' => 'form-control input-circle','placeholder'=>'В случай, че искате да промотирате Ваши доброволчески проекти или да споделите нещо друго с хората, които ще кандидатстват по Ваши проекти,моля , напишете тук!']) !!}
                                                         
                                                         
                                                         {!! Form::submit('Save Changes', ['class' => 'btn btn-circle btn-outline blue btn-block margin']) !!}
