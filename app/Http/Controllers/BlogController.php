@@ -27,23 +27,31 @@ class BlogController extends Controller
         return view('blog.index')->withPosts($posts)->withBanner($banner)->with('banner2',$banner2);;
 
     }
-    public function rate(){
+    public function rate($id){
+
         $ip = $_SERVER['REMOTE_ADDR'];
-         $user_id = $_POST['user_id'];
-            $vote = $_POST['vote'];
+        $user_id = $_POST['user_id'];
+        $vote = $_POST['vote'];
         $ratingCollection = Rating::where('ip',$ip)->where('user_id',$user_id)->get();
-        $changeRating = Rating::find($ratingCollection[0]['id']);
-      
-        if(!empty($ratingCollection)){
+
+        if($ratingCollection->count()){
+            $changeRating = Rating::find($ratingCollection[0]['id']);
+
             $changeRating->vote = $vote;
             $changeRating->save();
+              return "changedRating";
+            
         }else{
              $rating = new Rating;
             $rating->user_id = $user_id;
             $rating->vote = $vote;
             $rating->ip =$ip;
             $rating->save();
+            return "success";
         }
-        return 'success';
+
+         
+        
+        
     }
 }

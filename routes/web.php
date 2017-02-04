@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('/earnings', 'AdminController@earnings')->middleware('admin');
 
 Route::get('login',['uses'=>'Auth\LoginController@showLoginForm','as'=>'login']);
 Route::post('login','Auth\LoginController@login');
@@ -56,25 +56,29 @@ Route::post('/account/add_logo',['uses'=>'AccountController@addLogo','as'=>'addL
 
 //User part
 Route::get('dashboard',['as'=>'user.dashboard','uses'=>'UserController@getDashboard']);
-//Admin
-Route::get('/admin',['as'=>'admin.dashboard','uses'=>'AdminController@getWelcome','middleware'=>'roles','roles'=>'Admin']);
 
-#POST ADMIN
-Route::get('/admin/posts',['as'=>'admin.posts','uses'=>'AdminController@getPosts','middleware'=>'roles','roles'=>'Admin']);
+
+//ADMIN
+
+Route::group(['middleware' => 'admin'], function () {
+		Route::get('/admin',['as'=>'admin.dashboard','uses'=>'AdminController@getWelcome','middleware'=>'roles','roles'=>'Admin']);
+	//Posts
+	Route::get('/admin/posts',['as'=>'admin.posts','uses'=>'AdminController@getPosts','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/posts/{id}',['as'=>'admin.posts.show','uses'=>'AdminController@showPost','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/posts/{id}/edit',['as'=>'admin.posts.edit','uses'=>'AdminController@showEditFormPost','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/posts/{id}/edit',['as'=>'admin.posts.update','uses'=>'AdminController@updatePost','middleware'=>'roles','roles'=>'Admin']);
 Route::delete('/admin/posts/{id}',['as'=>'admin.posts.delete','uses'=>'AdminController@deletePost','middleware'=>'roles','roles'=>'Admin']);
 Route::post('admin/posts/{id}/deletePostImage/{image_id}', 'AdminController@destroyPostImage');
 Route::post('admin/posts/{id}/deletePostPdf/{pdf_id}', 'AdminController@destroyPostPdf');
-#USER ADMIN
+    
+    //Users
 Route::get('/admin/users',['as'=>'admin.users','uses'=>'AdminController@getUsers','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/users/{id}',['as'=>'admin.users.show','uses'=>'AdminController@showUser','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/user/{id}/edit',['as'=>'admin.user.edit','uses'=>'AdminController@showEditUserForm','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/user/{id}/edit',['as'=>'admin.user.update','uses'=>'AdminController@updateUser','middleware'=>'roles','roles'=>'Admin']);
 Route::delete('/admin/user/{id}',['as'=>'admin.user.delete','uses'=>'AdminController@deleteUser','middleware'=>'roles','roles'=>'Admin']);
-
-//banner management
+    //banner management
 Route::get('/admin/banners_management',['as'=>'admin.banners_management','uses'=>'BannerController@getBanners','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/banner_management/{id}/edit',['as'=>'admin.banners.edit','uses'=>'BannerController@showEditBanner','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/banner_management/{id}/edit',['as'=>'admin.banners.update','uses'=>'BannerController@updateBanner','middleware'=>'roles','roles'=>'Admin']);
+});

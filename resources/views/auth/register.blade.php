@@ -9,6 +9,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 form2 margin">
            <span class="red"> Моля попълнете всички задължителни полета * </span>
+           <input type="hidden" name="_token" value="{{ csrf_token() }}">
             {!! Form::open(['files'=>true]) !!}
             {!! Form::label('name','Име на Вашата организация* :') !!}
             {!! Form::text('name',null,['class'=>'form-control']) !!}

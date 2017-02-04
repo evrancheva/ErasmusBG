@@ -22,6 +22,7 @@
     {!! Html::style('css/style.css') !!}
       {!! Html::style('css/custom.css') !!}
       
+      
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,9 +49,7 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=200052110463735";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<script>
-$(".fb-comments").attr("data-href", window.location.href);
-</script>
+
 <!--Start of Zendesk Chat Script-->
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
@@ -59,5 +58,6 @@ _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
 $.src="https://v2.zopim.com/?4Y46AG6fw9AidgxjRrGRhuKIVpuXsjxs";z.t=+new Date;$.
 type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 </script>
+
 <!--End of Zendesk Chat Script-->
 </head>

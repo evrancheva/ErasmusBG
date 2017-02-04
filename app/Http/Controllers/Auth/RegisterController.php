@@ -75,7 +75,7 @@ class RegisterController extends Controller
          $image = $data['logo'];
                $filename = time() . '.' . $image->getClientOriginalExtension();
                $location = public_path('images/' . $filename);
-              Image::make($image)->crop(150, 150)->save($location);
+              Image::make($image)->resize(150, 150)->save($location);
      
              
                

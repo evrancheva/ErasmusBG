@@ -13,9 +13,11 @@
 @endsection
 @section('content')
 <input class="id" type="hidden" value="{!!$post->id!!}">
+
 <div class="row">
 {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
 <div class="col-md-8">
+
    {!! Form::label('title','Тема на проекта* :') !!}
    {!! Form::text('title',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
    {!! Form::label('theme','По коя програма е проекта? :') !!}
@@ -35,7 +37,7 @@
    {!! Form::label('fees',"Какво е покрито в проекта?* (пр. пътни разходи, ношувки...)  :") !!}
    {!! Form::textarea('fees',null,array('class'=>'form-control input-circle', 'placeholder' => 'Пътни разходки, храна, нощувки')) !!}
    {!! Form::label('way_of_applying','Начин на кандидатсване*:') !!}
-   {!! Form::textarea('way_of_applying',null,array('class'=>'form-control input-circle','required'=>'','maxlength:256'))!!}
+   {!! Form::textarea('way_of_applying',null,array('class'=>'form-control input-circle'))!!}
    {!! Form::label('main_image',"Смени основната снимка :") !!}
    {!! Form::file('main_image') !!}
    {!! Form::label('featured_images',"Добави още снимки:") !!}
@@ -78,7 +80,7 @@
          Други снимки 
          <h1>
          @foreach($images as $image)
-         <div class="col-md-6 ">
+         <div class="col-md-6 x">
             <a class='deleteImage ' id='{!! $image->id !!}' ><i class="fa fa-times" aria-hidden="true"></i></a>
             <img id='image{!! $image->id!!}' class='margin-top-bottom right' src="{{asset("/images/")}}/{!! $image->image_small !!}" style="width:250;height:250px;">
          </div>

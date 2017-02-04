@@ -486,3 +486,19 @@ box-shadow: 1px 9px 43px 0px rgba(0,0,0,0.75);
     display: block;
     margin: auto;
 }
+.thanks{
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1px $ff9933 solid;
+  
+}
+.org2{
+    
+    color: #ff9933;
+    font-weight: bold;
+
+}
+.move2{
+        width: 50%;
+    margin: 0 auto;
+}

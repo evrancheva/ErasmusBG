@@ -2,26 +2,79 @@
 $(".deleteImage").click(function(){
    
 	var id = $(this).attr('id');
-  var idOfpost =$('.id');
-    
+    var idOfpost =$('.id').val();
+
+     $.ajax({
+                type: 'post',
+                url: '/deleteImage/'+ id,
+                data: {
+                    _token: token,
+                   
+                    id:id
+                },
+                success: function(result) {
+                 var x = $('.x');
+                 x.remove();
+                 
+
+                }
+            });
 
 
    });
-//delete PDF//Admin part
+
+function Rate(organization_id) {
+
+ 
+   var invocedRate = "#rateYo" + organization_id;
+
+  $(invocedRate).rateYo({
+    ratedFill: '#ff9933',
+    fullStar: true
+  });
+    $(invocedRate).rateYo()
+        .on("rateyo.set", function(e, data) {
+
+                console.log(1);
+         
+            
+            $.ajax({
+                type: 'post',
+                url: '/vote/'+ organization_id,
+                data: {
+                    _token: token,
+                    vote: data.rating,
+                    user_id:organization_id
+                },
+                success: function(result) {
+                   var vote = $('#vote'+organization_id);
+                   var thankyou = $('#thankyou'+organization_id);
+                    vote.hide();     
+                    thankyou.show();    
+                console.log(result);
+                            
+
+                }
+            });
+
+        });
+}
+
 $(function() {
+
   $("#rateYo").rateYo({
-  
+   ratedFill: '#ff9933',
     fullStar: true
   });
     $("#rateYo").rateYo()
         .on("rateyo.set", function(e, data) {
 
             var user_id = $("#user_id").val();
-            console.log(user_id);
-            console.log("The rating is set to " + data.rating + "!");
+         
+            
             $.ajax({
                 type: 'post',
-                url: '/vote/',
+                url: '/vote/'+ user_id,
                 data: {
                     _token: token,
                     vote: data.rating,

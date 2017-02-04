@@ -57,7 +57,7 @@
                            <a class="addthis_button_compact"></a>
                            <a class="addthis_counter addthis_bubble_style"></a>
                         </div>
-                        <script type="text/javascript">{literal}var addthis_config = {"data_track_addressbar":true};{/literal}</script>
+                        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
                         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-537cf4bd1ff9dd3c"></script>
                         <!-- AddThis Button END -->
                      </div>
@@ -141,7 +141,8 @@
 {!! Html::script('js/scripts.js') !!}
 {!! Html::script('js/custom.js') !!}
 {!! Html::script('js/ajax.js') !!}
+
 <script>
  var token = '{!! Session::token()!!}';
 </script>
-@endsection
+@stop
