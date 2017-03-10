@@ -292,11 +292,16 @@ class PostController extends Controller
        
     }
     public function searchPosts(Request $request){
-        $results = Post::where('title', 'LIKE', '%'.$request->search.'%')->get();
-       return view("posts.results")->withResults($results);
-    }
-    public function getResults(){
-        
+        $country = Country::where('name','LIKE', '%'.$request->search.'%')->first();
+        $user_id = Auth::user()->id;
+        if(empty($country)){
+             $posts = Post::where('title', 'LIKE', '%'.$request->search.'%')->where('user_id','=',$user_id)->orWhere('location','LIKE','%'.$request->search.'%')->get();
+        }else{
+               $posts = Post::where('title', 'LIKE', '%'.$request->search.'%')->where('user_id','=',$user_id)->orWhere('location','LIKE','%'.$request->search.'%')->orWhere('country_id','=',$country->id)->get(); 
+        }
+    
+
+       return view("posts.results")->withPosts($posts);
     }
 
     

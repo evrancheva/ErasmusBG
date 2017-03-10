@@ -33,7 +33,8 @@ Route::resource('tags','TagController',['except'=>['create']]);
 #Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle','middleware'=>'roles','roles'=>'User']);
 Route::get('trips/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle']);
 Route::get('trips',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
-Route::post('vote/',['as'=>'blog.rate','uses'=>'BlogController@rate']);
+
+Route::post('vote/{id}',['as'=>'blog.rate','uses'=>'BlogController@rate']);
 
 
 Route::get('/',['uses'=>'PagesController@getIndex','as'=>'index']);
@@ -42,8 +43,11 @@ Route::post('/contact','PagesController@postContact');
 Route::get('/terms','PagesController@getTerms');
 Route::get('/about','PagesController@getAbout');
 Route::resource('posts','PostController');
-Route::post('/search',['uses'=>'PostController@searchPosts','as'=>'posts.search']);
+
+Route::get('/search',['uses'=>'PostController@searchPosts','as'=>'posts.search']);
 Route::get('/posts/results',['uses'=>'PostController@getResults','as'=>'posts.results']);
+
+
 //Route::resource('аccount','UserController',['except'=>['create','store']]);
 Route::resource('account','AccountController');
 Route::get('/organizations',['uses'=>'PagesController@getOrganizations','as'=>'organizations']);
@@ -70,14 +74,18 @@ Route::put('/admin/posts/{id}/edit',['as'=>'admin.posts.update','uses'=>'AdminCo
 Route::delete('/admin/posts/{id}',['as'=>'admin.posts.delete','uses'=>'AdminController@deletePost','middleware'=>'roles','roles'=>'Admin']);
 Route::post('admin/posts/{id}/deletePostImage/{image_id}', 'AdminController@destroyPostImage');
 Route::post('admin/posts/{id}/deletePostPdf/{pdf_id}', 'AdminController@destroyPostPdf');
-    
-    //Users
+Route::get('admin/search',['uses'=>'AdminController@searchPosts','as'=>'admin.posts.search']);
+
+Route::post('/admin/user/{id}/roles}',['as'=>'admin.user.makeAdmin','uses'=>'AdminController@makeAdmin']);
+
 Route::get('/admin/users',['as'=>'admin.users','uses'=>'AdminController@getUsers','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/users/{id}',['as'=>'admin.users.show','uses'=>'AdminController@showUser','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/user/{id}/edit',['as'=>'admin.user.edit','uses'=>'AdminController@showEditUserForm','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/user/{id}/edit',['as'=>'admin.user.update','uses'=>'AdminController@updateUser','middleware'=>'roles','roles'=>'Admin']);
 Route::delete('/admin/user/{id}',['as'=>'admin.user.delete','uses'=>'AdminController@deleteUser','middleware'=>'roles','roles'=>'Admin']);
-    //banner management
+Route::put('/admin/user/{id}/editUser',['as'=>'admin.user.updateUser','uses'=>'AdminController@updateInfoUser','middleware'=>'roles','roles'=>'Admin']);
+Route::get('/admin/user/{id}/roles',['as'=>'admin.user.roles','uses'=>'AdminController@showRoles','middleware'=>'roles','roles'=>'Admin']);
+
 Route::get('/admin/banners_management',['as'=>'admin.banners_management','uses'=>'BannerController@getBanners','middleware'=>'roles','roles'=>'Admin']);
 Route::get('/admin/banner_management/{id}/edit',['as'=>'admin.banners.edit','uses'=>'BannerController@showEditBanner','middleware'=>'roles','roles'=>'Admin']);
 Route::put('/admin/banner_management/{id}/edit',['as'=>'admin.banners.update','uses'=>'BannerController@updateBanner','middleware'=>'roles','roles'=>'Admin']);

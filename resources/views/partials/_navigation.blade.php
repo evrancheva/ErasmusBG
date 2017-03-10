@@ -21,8 +21,12 @@
                 <li class="{{Request::is('about') ? "active": ""}}"><a href="/about">За нас</a></li>
                 
                 <li class="{{Request::is('organizations') ? "active": ""}}"><a href="/organizations">Партньори</a></li>
-                <li class=""><a @if(!Auth::check()) href="{!! route('login') !!}" @else href="/dashboard" @endif>За организации</a></li>
-                 
+                @if(!Auth::check())
+                    <li class=""><a  href="{!! route('login') !!}">За организации</a></li>
+                    @else
+                 <li ><a  href="/dashboard"><span class="red"> Вашият профил </span></a> </li>
+                  <li ><a  href="/logout"><span class="red" > <i class="fa fa-sign-out" aria-hidden="true"></i> </span></a> </li>
+                 @endif
 
             </ul>
 

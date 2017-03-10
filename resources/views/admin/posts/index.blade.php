@@ -41,7 +41,7 @@
                                                 <th>#</th>
                                                 <th>Title</th>
                                                 <th>Location</th>
-                                                <th>User_id</th>
+                                                <th>User</th>
                                                 <th>Dates</th>
 
                                                 <th></th>
@@ -53,7 +53,7 @@
                                                     <th>{{$post->id}}</th>
                                                     <th>{{$post->title}}</th>
                                                     <td>{{$post->location}}</td>
-                                                    <td>{{$post->user_id}}</td>
+                                                    <td>{{$post->user->name}}</td>
                                                     <td>{{date('M j, Y',strtotime($post->start_date))}} - {{date('M j, Y',strtotime($post->end_date))}}</td>
                                                     <td>
                                                      <a href="{{route("admin.posts.show",$post->id)}}" class="btn btn-circle btn-outline blue ">View</a>

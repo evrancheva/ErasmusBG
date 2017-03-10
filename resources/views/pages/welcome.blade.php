@@ -135,13 +135,26 @@
    </div>
    @else
    <div class="container">
-      <span class="titleOfarticle"></span>
-      <div class="row">
-         <div class=" col-md-12">
-            <img src="{{asset("/images/thank.png")}}" class="img-responsive margin" >
+   <span class="titleOfarticle"></span>
+   
+      <div class="col-md-12">
+         <div class="form">
+            <div class="col-md-offset-4 col-md-12 col-xs-12">
+                  
+                  <a class="" href="\dashboard">
+                     <div class="register">
+                        <div class="layer2">
+                                       
+                              Вашият профил
+                              <br>
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  </a>
+                  </div> 
+              
          </div>
       </div>
    </div>
+ 
    @endif
    <div class="container">
       <span class="titleOfarticle">Организации</span>

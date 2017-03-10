@@ -28,29 +28,33 @@ class BlogController extends Controller
 
     }
     public function rate($id){
+       
 
-        $ip = $_SERVER['REMOTE_ADDR'];
+       $ip = $_SERVER['REMOTE_ADDR'];
         $user_id = $_POST['user_id'];
         $vote = $_POST['vote'];
         $ratingCollection = Rating::where('ip',$ip)->where('user_id',$user_id)->get();
 
-        if($ratingCollection->count()){
+
+       if(count($ratingCollection)){
+            
+            
             $changeRating = Rating::find($ratingCollection[0]['id']);
 
             $changeRating->vote = $vote;
             $changeRating->save();
               return "changedRating";
             
-        }else{
-             $rating = new Rating;
+        }
+       
+        
+            
+            $rating = new Rating;
             $rating->user_id = $user_id;
             $rating->vote = $vote;
             $rating->ip =$ip;
             $rating->save();
-            return "success";
-        }
-
-         
+           
         
         
     }

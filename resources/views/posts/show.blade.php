@@ -71,20 +71,20 @@
 
    <div class="col-md-12">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
    @if(!empty($post->image)) 
 <h2> Основна снимка </h2>
          <img  src="{{asset("/images/")}}/{!! $post->image !!}" style="width:250;height:250px;">
 
       </div>
       @if(!$images->isEmpty())
-      <div class="col-md-10">
+      <div class="col-md-9">
         
           <h2 class="title">Допълнителни снимки</h2>
 
           @foreach($images as $image)
 
-          <div class="col-md-2 col-xs-12 margin-top-bottom">
+          <div class="col-md-4 col-xs-12 margin-top-bottom">
             <img src="{{asset("/images/")}}/{!! $image->image_small !!}" style="width:250;height:250px;">
          </div>
           @endforeach

@@ -35,12 +35,10 @@ function Rate(organization_id) {
     $(invocedRate).rateYo()
         .on("rateyo.set", function(e, data) {
 
-                console.log(1);
-         
             
             $.ajax({
                 type: 'post',
-                url: '/vote/'+ organization_id,
+                url: 'vote/'+ organization_id,
                 data: {
                     _token: token,
                     vote: data.rating,
@@ -51,7 +49,7 @@ function Rate(organization_id) {
                    var thankyou = $('#thankyou'+organization_id);
                     vote.hide();     
                     thankyou.show();    
-                console.log(result);
+                    console.log(result);
                             
 
                 }
@@ -70,7 +68,7 @@ $(function() {
         .on("rateyo.set", function(e, data) {
 
             var user_id = $("#user_id").val();
-         
+            console.log(1);
             
             $.ajax({
                 type: 'post',

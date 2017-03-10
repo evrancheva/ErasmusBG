@@ -43,7 +43,8 @@
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
-                                               
+                                                <th> Confirmed </th>
+                                                
 
                                                 <th>Actions</th>
                                             </tr>
@@ -60,9 +61,18 @@
                                                     
                                                     <td>@if(!empty($user->phone))
                                                         {{$user->phone}} @else <h5>No phone </h5> @endif</td>
+                                                        <td>
+                                                            @if($user->confirmed == 1)
+                                                            Yes @else No @endif
+                                                        </td>
+                                                      
                                                    <td>
 
-                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a></td>
+                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a>
+                                                    <a href="{{route("admin.user.edit",$user->id)}}" class="btn btn-circle btn-outline red ">Edit</a>
+                                                    <a href="{{route("admin.user.roles",$user->id)}}" class="btn btn-circle btn-outline blue ">Roles</a>
+                                                    </td>
+
                                                 </tr>
                                             @endforeach
                                             </tbody>
