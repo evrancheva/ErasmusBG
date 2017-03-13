@@ -4,12 +4,7 @@
     <!-- BEGIN PAGE HEADER-->
     <!-- BEGIN THEME PANEL -->
     <!-- END THEME PANEL -->
-    <h1 class="page-title"> Всички проекти</h1>
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-         
-        </ul>
-    </div>
+  
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -44,6 +39,7 @@
                                                 <th>Email</th>
                                                 <th>Phone</th>
                                                 <th> Confirmed </th>
+                                                <th> Roles </th>
                                                 
 
                                                 <th>Actions</th>
@@ -55,17 +51,30 @@
                                                     <td>{!!$user->id!!}</td>
                                                     <td> @if(!empty($user->logo))
                                                         <img src="{{asset("/images/")}}/{!!$user->logo!!}" class="minilogo img-circle">@else
-                                                        <h5>No image </h5> @endif</td>
+                                                        <h5>No image </h5> @endif
+                                                    </td>
                                                     <td>{!!$user->name!!} </td>
                                                     <td>{{$user->email}}</td>
                                                     
                                                     <td>@if(!empty($user->phone))
-                                                        {{$user->phone}} @else <h5>No phone </h5> @endif</td>
+                                                        {{$user->phone}} @else <h5>No phone </h5> @endif
+                                                    </td>
                                                         <td>
                                                             @if($user->confirmed == 1)
                                                             Yes @else No @endif
                                                         </td>
-                                                      
+
+                                                       <td> 
+
+                                                        @foreach($user->roles as $role)
+                                                            @if($role->name == 'Admin')
+                                                                <span  class="reded">  Admin </span>
+                                                            @else
+                                                                    <span > User </span>
+                                                            @endif
+                                                           
+                                                             @endforeach
+                                                        </td>
                                                    <td>
 
                                                     <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a>

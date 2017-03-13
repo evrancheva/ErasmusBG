@@ -77,15 +77,21 @@ class RegisterController extends Controller
                $location = public_path('images/' . $filename);
               Image::make($image)->resize(150, 150)->save($location);
      
-             
+          $site =  $data['site'];  
                
+        if (strpos($site, 'http://') === false) {
+            $siteAfterCheck = "http://" . $site;
+        }
+        else{
+             $siteAfterCheck =$site;
+        }
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'description'=> $data['description'],
-            'site'=> $data['site'],
+            'site'=> $siteAfterCheck,
             'phone'=> $data['phone'],
             'address'=> $data['address'],
             'logo'=> $filename,

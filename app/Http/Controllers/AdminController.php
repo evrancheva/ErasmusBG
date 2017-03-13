@@ -162,6 +162,7 @@ class AdminController extends Controller
         Session::flash('success','The pdf was successfully deleted!');
     }
     public function showUser($id){
+
          $user = User::find($id);
 
          return view("admin.users.show")->withUser($user);
@@ -200,11 +201,19 @@ class AdminController extends Controller
               Image::make($image)->resize(150, 150)->save($location);
         $user->logo = $filename;
     }
+        $site = $request->site;         
+        if (strpos($site, 'http://') === false) {
+            $siteAfterCheck = "http://" . $site;
+        }
+        else{
+             $siteAfterCheck =$site;
+        }
+        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->site = $request->site;
+        $user->site = $siteAfterCheck;
           $user->president = $request->president;
         $user->description = $request->description;
         $user->additional_information = $request->additional_information;
@@ -214,25 +223,42 @@ class AdminController extends Controller
           return redirect()->route("admin.users");
     }
     public function showRoles($id){
-        $user = User::where('id','=', $id)->get()->first();
-        $findRoles = $user = DB::table('user_role')->where('user_id', $user->id)->get();
+       
+        $user = User::find($id);
+
+        $findRoles = DB::table('user_role')->where('user_id', $user->id)->get();
       
         $roles = array();
         foreach($findRoles as $role){
             $findNameOfRole = Role::where('id','=',$role->role_id)->get()->first();
-            array_push($roles,$findNameOfRole);
+         
+            array_push($roles,$findNameOfRole->name);
            
         }
-        print_r($user->id);
-        die();
-    
       
         return view('admin.users.roles')->withRoles($roles)->withUser($user);
     }
      public function makeAdmin($id){
-
-        echo 1;
-        die();
+             $user = User::find($id);
+             $user->roles()->attach(Role::where('name','Admin')->first());
+          Session::flash('success','The user was successfully made admin!');
+          return redirect()->route("admin.users");
     }
+  public function removeAdmin($id){
+             $user = User::find($id);
+             $user->roles()->detach(Role::where('name','Admin')->first());
+             Session::flash('success','The user was successfully removed from admins!');
+             return redirect()->route("admin.users");
+    }
+    public function searchUser(Request $request){
+    echo 123;
+       die();
+    }
+    public function searchPosts(Request $request){
+          $posts = Post::where('title', 'LIKE', '%'.$request->search.'%')->orWhere('location','LIKE','%'.$request->search.'%')->get();
+
+       return view("admin.posts.results")->withPosts($posts);
+    }
+    
 
 }

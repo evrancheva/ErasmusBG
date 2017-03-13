@@ -163,10 +163,12 @@
             <div class="col-md-offset-2"
             <div id="owl-demo3">
                @foreach($users as $user)
+               <a href="{!! $user->site !!}" target="_blank">
                <div class="item">
                   <img src="{{asset("/images/")}}/{!! $user->logo !!}" class="img-responsive " style="width:50px; height:50px;">
                   <p>{!!$user->name!!}</p>
                </div>
+               </a>
                @endforeach
             </div>
          </div>

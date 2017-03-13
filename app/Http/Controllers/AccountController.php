@@ -94,13 +94,20 @@ class AccountController extends Controller
             'site' => 'required',
             'description' => 'required'
         ));
+        $site = $request->site;         
+        if (strpos($site, 'http://') === false) {
+            $siteAfterCheck = "http://" . $site;
+        }
+        else{
+             $siteAfterCheck =$site;
+        }
 
         $user = User::find(Auth::user()->id);;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->site = $request->site;
+        $user->site =  $siteAfterCheck;
         $user->description = $request->description;
         $user->additional_information = $request->additional_information;
 $request->description;

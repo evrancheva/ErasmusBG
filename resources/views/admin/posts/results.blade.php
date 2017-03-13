@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 @section('title', '| Results')
 @section('content')
     <!-- BEGIN PAGE HEADER-->
