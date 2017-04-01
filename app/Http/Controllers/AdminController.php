@@ -21,6 +21,8 @@ use App\User;
 use App\Country;
 use App\Role;
 use DB;
+use Mail;
+
 class AdminController extends Controller
 {
       public function __construct()
@@ -175,9 +177,23 @@ class AdminController extends Controller
      public function updateUser(Request $request, $id)
     {
         $user = User::find($id);
-        $user->confirmed = $request->confirmed;
-        $user->save();
-         Session::flash('success','The user was successfully confirmed!');
+        if($user->confirmed == 1){
+            $user->confirmed = 0;
+            $user->save();
+            Session::flash('success','The user would not be able to post again!');
+        }
+        else{
+           
+           Mail::send('emails.confirmed', ['user' => $user], function ($m) use ($user) {
+              $m->from('erasmusbulgariainfo@gmail.com', 'ErasmusBG.com');
+               $m->to($user->email, $user->name)->subject('Вече можете да влезнете в своя профил');
+          });
+
+               $user->confirmed = $request->confirmed;
+               $user->save();
+        }
+     
+       
           return view("admin.users.show")->withUser($user);
     }
 

@@ -77,7 +77,7 @@
                                                         </td>
                                                    <td>
 
-                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue ">View</a>
+                                                    <a href="{{route("admin.users.show",$user->id)}}" class="btn btn-circle btn-outline blue "> Confirm </a>
                                                     <a href="{{route("admin.user.edit",$user->id)}}" class="btn btn-circle btn-outline red ">Edit</a>
                                                     <a href="{{route("admin.user.roles",$user->id)}}" class="btn btn-circle btn-outline blue ">Roles</a>
                                                     </td>
